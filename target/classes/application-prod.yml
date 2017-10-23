@@ -1,0 +1,12 @@
+server:   ####### 发布环境配置 #######
+  port: 80
+
+spring:
+   jpa:
+       hibernate:
+         ddl-auto: update
+       show-sql: false
+       generate-ddl: false
+
+   thymeleaf:
+       cache: true

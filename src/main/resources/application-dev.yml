@@ -1,0 +1,12 @@
+server:  #******* 生产环境配置 *******#
+  port: 8082
+
+spring:
+   jpa:
+       hibernate:
+         ddl-auto: update #每次发布都会创建新的数据库
+       show-sql: true     #是否显示sql
+       generate-ddl: true #是否显示DDL语句
+
+   thymeleaf:
+       cache: false       #页面是否缓存生产不缓存
