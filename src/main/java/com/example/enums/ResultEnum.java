@@ -19,10 +19,12 @@ public enum ResultEnum {
     GONE(410,"请求的资源被永久删除，且不会再得到的"),
     UNPROCESBLE_ENTITY(422,"当创建一个对象时，发生一个验证错误。"),
     INTERNAL_SERVER_ERROR(500,"服务器发生错误,用户将无法判断发出的请求是否成功"),
-    LOGIN_NULL(10001,"请输入账号密码！"),
     LOGIN_SUCCESS(10000,"登入成功！！！"),
+    LOGIN_NULL(10001,"请输入账号密码！"),
     LOGIN_REGISTERED(10002,"账号已存在！！！"),
-    REGISTER_SUCCESS(11000,"注册成功！!!"),
+    REGISTER_SUCCESS(10003,"注册成功！!!"),
+    LOGIN_ACCOUNT_ERROR(10004,"账号错误！"),
+    LOGIN_PASSWORD_ERROR(10005,"密码错误！")
     ;
 
     private Integer code;

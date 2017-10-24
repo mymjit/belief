@@ -30,6 +30,7 @@ public class UserController {
     @Autowired()
     private UserService userService;
 
+
     //用户注册接口
     @PostMapping("/register")
     public Result<User> register(@Valid User user){
@@ -37,7 +38,9 @@ public class UserController {
         if ( null == user ){ //数据为空
             throw new UserException(ResultEnum.LOGIN_NULL);
         }
-        return ResultUtil.success(userService.register(user));
+        //注册成功将用户信息缓存到COOKIE中
+
+        return ResultUtil.success( userService.register(user) );
     }
 
 
@@ -45,7 +48,7 @@ public class UserController {
     @PostMapping("/login")
     public Result< User > login(@Valid User user){
         if ( null != user ){
-
+            User base_user =  userService.login(user);
         }
         return null;
     }

@@ -16,5 +16,5 @@ public interface UserService {
 
     public User register(User user);
 
-    public void login(User user);
+    public User login(User user);
 }

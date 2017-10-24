@@ -71,7 +71,7 @@ var index ={
                 contentType: "application/x-www-form-urlencoded; charset=utf-8",
                 success : function ( data ) {
                     console.log( 'code : '+ data.code + 'msg : ' +data.msg +' data : '+data.data)
-                    if( 11000 == data.code ){
+                    if( 10003 == data.code ){
                         index.register_modal(); //关闭注册框
                         index.message_model_init(true,data.msg);
                         index.message_model();

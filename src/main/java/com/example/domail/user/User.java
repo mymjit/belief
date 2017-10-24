@@ -3,6 +3,8 @@ package com.example.domail.user;
 import com.example.domail.blog.Article;
 
 import javax.persistence.*;
+import javax.validation.Valid;
+import javax.validation.constraints.Min;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,7 +24,7 @@ public class User {
     private String sex;                //性别       (年龄根据身份证动态获取)
     private String idCard;             //身份证
     private String email;              //邮箱
-    @Column( unique = true )
+    @Column( unique = true , length = 11 )
     private String telephoneNumber;    //电话       (登入的账号,唯一)
     private String password;           //密码       (登入的密码)
     private Integer integral;          //积分      (对网站的贡献)

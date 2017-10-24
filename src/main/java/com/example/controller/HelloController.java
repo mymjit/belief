@@ -6,6 +6,9 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+import java.util.UUID;
 
 
 @Controller
@@ -15,9 +18,16 @@ public class HelloController {
     private Integer uniqueVisitor = 0; //实时访问次数
 
     @GetMapping( value = "/")
-    public String index(){
+    public String index(HttpServletRequest request){
+
+        HttpSession session = request.getSession();
+        UUID uuid = (UUID) session.getAttribute("uuid");
+        if (uuid == null) {
+            uuid = UUID.randomUUID();
+        }
+        session.setAttribute("uuid", uuid);
         count();
-        System.out.println("sss");
+        logger.info("methodAccessTimes : {}",uniqueVisitor);
         return  "index";
     }
 

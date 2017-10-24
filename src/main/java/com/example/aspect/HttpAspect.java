@@ -36,8 +36,6 @@ public class HttpAspect {
 
     private final static Logger logger = LoggerFactory.getLogger(HttpAspect.class);
 
-    private Long   endTime_ns;    //方法执行结束时间 - 纳秒
-    private Long   startTime_ns;  //方法执行开始时间 - 纳秒
 
 
 
@@ -50,7 +48,7 @@ public class HttpAspect {
     //针对所有http请求进行切割
     @Pointcut("execution(public * com.example.controller..*(..))")
     public void log(){
-        increaseUniqueVisitor();
+
     }
 
 
@@ -64,26 +62,30 @@ public class HttpAspect {
     public void doBetore(JoinPoint joinPoint){
         ServletRequestAttributes attributes =(ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
         HttpServletRequest request =attributes.getRequest();
-        //ip
-        logger.info("ip                : {}",request.getRemoteAddr());
-        //url   请求的URL
-        logger.info("url               : {}",request.getRequestURI());
-        //参数
-        logger.info("args              : {}",joinPoint.getArgs());
-        //method  请求的方式
-        logger.info("requestMode       : {}",request.getMethod());
-        //请求的类+方法名
-        logger.info("className         : {}",joinPoint.getSignature().getDeclaringTypeName()+"."+joinPoint.getSignature().getName());
+//        //ip
+//        logger.info("ip                : {}",request.getRemoteAddr());
+//        //url   请求的URL
+//        logger.info("url               : {}",request.getRequestURI());
+//        //参数
+//        logger.info("args              : {}",joinPoint.getArgs());
+//        //method  请求的方式
+//        logger.info("requestMode       : {}",request.getMethod());
+//        //请求的类+方法名
+//        logger.info("className         : {}",joinPoint.getSignature().getDeclaringTypeName()+"."+joinPoint.getSignature().getName());
 
-        executionLog =new ExecutionLog();
+        executionLog.setStartTime_ns( System.nanoTime() );
         executionLog.setIp( request.getRemoteAddr());
         executionLog.setUrl( request.getRequestURI() );
-        if ( joinPoint.getArgs().length > 0 ){ //针对没有参数项处理
-            executionLog.setArgs( gson.toJson(joinPoint.getArgs()) );
+        Object[] objects =joinPoint.getArgs();
+        if (objects.length > 0 ){ //针对没有参数项处理
+            if( objects[0] instanceof HttpServletRequest ){
+                //方法没有参数时joinPoint.getArgs会返回一个request对象 用户Gson.toJson去解析会导致循环无法退出最终内存溢出
+            } else {
+                executionLog.setArgs( gson.toJson( joinPoint.getArgs() ) );
+            }
         }
         executionLog.setClassName( joinPoint.getSignature().getDeclaringTypeName()+"."+joinPoint.getSignature().getName());
         executionLog.setRequestMode( request.getMethod() );
-        executionLog.setStartTime_ns( System.nanoTime() );
     }
 
 
@@ -95,12 +97,10 @@ public class HttpAspect {
      */
     @After("log()")
     public void doAfter(){
-        executionLog.setMethodAccessTimes( String.valueOf(increaseUniqueVisitor()) );
-        endTime_ns = System.nanoTime();
-        //打印一下程序执行时间
+        logger.info("test");
         executionLog.setEndTime_ns( System.nanoTime() );
-        logger.info("methodRunningTime :  {}",executionLog.getEndTime_ns() - executionLog.getStartTime_ns()+"ns 纳秒");
-        executionLog.setMethodRunningTime( String.valueOf( executionLog.getEndTime_ns() - executionLog.getStartTime_ns() ) );
+        executionLog.setMethodAccessTimes( increaseUniqueVisitor().toString() );
+        executionLog.setMethodRunningTime( runTime() );
     }
 
     //打印 处理后的返回内容
@@ -113,6 +113,11 @@ public class HttpAspect {
 
     private Integer increaseUniqueVisitor(){
         return this.uniqueVisitor++;
+    }
+
+    private String runTime(){
+       Long runtime = executionLog.getEndTime_ns() - executionLog.getStartTime_ns();
+       return runtime.toString();
     }
 
 }
