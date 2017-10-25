@@ -26,14 +26,14 @@ public class HelloController {
             uuid = UUID.randomUUID();
         }
         session.setAttribute("uuid", uuid);
+        logger.info("Session缓存信息 : {}",session.getAttribute("uuid"));
         count();
-        logger.info("methodAccessTimes : {}",uniqueVisitor);
         return  "index";
     }
 
     private void count(){
         this.uniqueVisitor++;
-        logger.info("methodAccessTimes : {}",uniqueVisitor);
+        logger.info("接口实时访问人数: {}",uniqueVisitor);
     }
 
 }
