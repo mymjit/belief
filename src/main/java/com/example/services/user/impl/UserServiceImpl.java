@@ -7,6 +7,7 @@ import com.example.repository.user.UserRepository;
 import com.example.services.user.UserService;
 import com.example.util.Md5Util;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -16,6 +17,9 @@ import java.util.Random;
  * @Author : while
  * @Date : 2017/10/17
  * @Describe :
+ * @Cacheable 相当于insert()操作
+ * @CachePut 相当于update()操作
+ * @CacheEvict 相当于delete()操作
  */
 @Service
 public class UserServiceImpl implements UserService {
@@ -28,6 +32,7 @@ public class UserServiceImpl implements UserService {
     private UserRepository userRepository;
 
     @Transactional   //事物管理  查询不需要
+    @Cacheable(value = "user",keyGenerator="keyGenerator")
     public User register(User user) {
         User user_base = userRepository.findByUserNameOne(user.getTelephoneNumber());
         if ( null != user_base ){ //如果数据库中存在该用户登入名称抛出用户已存在异常
