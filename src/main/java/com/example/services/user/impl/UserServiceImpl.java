@@ -33,7 +33,7 @@ public class UserServiceImpl implements UserService {
     public User register(User user) {
         User user_base = userRepository.findByUserNameOne(user.getTelephoneNumber());
         if (null != user_base) { //如果数据库中存在该用户登入名称抛出用户已存在异常
-            throw new UserException(ResultEnum.LOGIN_REGISTERED);
+            throw new UserException(ResultEnum.USER_ALREADY_EXISTS);
         }
         //将密码进行加密处理
         String password = user.getTelephoneNumber();
@@ -48,7 +48,7 @@ public class UserServiceImpl implements UserService {
             //抛出用户不存在异常
             throw new UserException(ResultEnum.LOGIN_ACCOUNT_ERROR);
         } else {  //验证密码
-            if (md5Util.checkPassword(user.getTelephoneNumber(), user_base.getTelephoneNumber())) {
+            if ( md5Util.checkPassword(user.getTelephoneNumber(), user_base.getTelephoneNumber()) ) {
                 //顺利通过返回登入成功 写入cookie
                 return user_base;
             } else {
@@ -56,7 +56,6 @@ public class UserServiceImpl implements UserService {
                 throw new UserException(ResultEnum.LOGIN_PASSWORD_ERROR);
             }
         }
-
     }
 
 }
