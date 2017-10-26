@@ -3,7 +3,11 @@ package com.example.domail.log;
 
 import org.springframework.stereotype.Component;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import java.io.Serializable;
 
 /**
  * @Author : while
@@ -12,21 +16,21 @@ import javax.persistence.*;
  */
 @Entity
 @Component
-public class ExecutionLog {
+public class ExecutionLog implements Serializable {
 
     @Id
-    @GeneratedValue( strategy =GenerationType.IDENTITY )
-    private  Integer  id;                 //主键
-    private  String   ip;                 //请求ip地址
-    private  String   url;                //请求的URL
-    private  String   args;               //请求的参数项json字符
-    private  String   response;           //方法返回值
-    private  String   className;          //请求的类名+方法名
-    private  String   requestMode;        //请求的方式
-    private  Long     endTime_ns;         //方法执行后时间
-    private  Long     startTime_ns;       //方法执行前时间
-    private  String   methodAccessTimes;  //方法访问次数
-    private  String   methodRunningTime;  //方法执行时长
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;                 //主键
+    private String ip;                 //请求ip地址
+    private String url;                //请求的URL
+    private String args;               //请求的参数项json字符
+    private String response;           //方法返回值
+    private String className;          //请求的类名+方法名
+    private String requestMode;        //请求的方式
+    private Long endTime_ns;         //方法执行后时间
+    private Long startTime_ns;       //方法执行前时间
+    private String methodAccessTimes;  //方法访问次数
+    private String methodRunningTime;  //方法执行时长
 
     public ExecutionLog() {
     }

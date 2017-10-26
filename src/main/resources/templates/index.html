@@ -71,7 +71,7 @@
                     </a>
                 </li>
                 <li id="loginButton" role="presentation">
-                    <a class="text-success" >
+                    <a class="text-success">
 							<span class="glyphicon glyphicon-grain" aria-hidden="true">
 								<strong>登入解锁更多功能</strong>
 							</span>
@@ -236,10 +236,12 @@
                 <form id="loginFrom">
                     <div class="form-group has-primary">
                         <label for="userName">用 户 名:</label>
-                        <input class="form-control" type="text" maxlength="11" minlength="11" id="userName" name="telephoneNumber" placeholder="请输入用户名"/></div>
+                        <input class="form-control" type="text" maxlength="11" minlength="11" id="userName"
+                               name="telephoneNumber" placeholder="请输入用户名"/></div>
                     <div class="form-group has-primary">
                         <label for="password">密&nbsp;&nbsp;&nbsp;&nbsp;码：</label>
-                        <input class="form-control" type="password" id="password" name="password" placeholder="请输入密码"/></div>
+                        <input class="form-control" type="password" id="password" name="password" placeholder="请输入密码"/>
+                    </div>
                 </form>
             </div>
             <div class="modal-footer">
@@ -266,24 +268,28 @@
                 <form id="registerFrom">
                     <div class="form-group has-primary">
                         <label for="registerTelephoneNumber">手 机:</label>
-                        <input type="text" class="form-control" id="registerTelephoneNumber" maxlength="11" name="telephoneNumber" placeholder="请输入你的手机号码!"/>
+                        <input type="text" class="form-control" id="registerTelephoneNumber" maxlength="11"
+                               name="telephoneNumber" placeholder="请输入你的手机号码!"/>
                         <span id="helpBlock2" class="help-block hidden">请输入正确的手机号码！</span>
                     </div>
                     <div class="form-group has-primary">
                         <label for="registerPassWord">密&nbsp;&nbsp;&nbsp;&nbsp;码：</label>
-                        <input type="password" class="form-control" id="registerPassWord" name="password" placeholder="请输入密码"/>
+                        <input type="password" class="form-control" id="registerPassWord" name="password"
+                               placeholder="请输入密码"/>
                         <span id="helpBlock3" class="help-block hidden">密码必须大于8位,由数字/符号自由组合！</span>
                     </div>
 
                     <div class="form-group has-primary">
-                        <label  class="control-label" for="ConfirmPassWord">确认密码</label>
-                        <input type="password" class="form-control" id="confirmPassWord"  placeholder="请输入确认密码"/>
+                        <label class="control-label" for="ConfirmPassWord">确认密码</label>
+                        <input type="password" class="form-control" id="confirmPassWord" placeholder="请输入确认密码"/>
                         <span id="helpBlock1" class="help-block hidden">密码与确认密码不一直请重新输入！</span>
                     </div>
                 </form>
             </div>
             <div class="modal-footer">
-                <button id="register" type="button" class="btn btn-primary" data-toggle="tooltip" data-placement="left" title="Tooltip on left" >注册账号</button>
+                <button id="register" type="button" class="btn btn-primary" data-toggle="tooltip" data-placement="left"
+                        title="Tooltip on left">注册账号
+                </button>
             </div>
         </div>
     </div>
@@ -297,12 +303,12 @@
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
-                <h4 class="modal-title" >消息提示</h4>
+                <h4 class="modal-title">消息提示</h4>
             </div>
             <div class="modal-body">
-                    <div class="form-group has-primary">
-                        <span id="message" class="text-success">注册成功</span>
-                    </div>
+                <div class="form-group has-primary">
+                    <span id="message" class="text-success">注册成功</span>
+                </div>
             </div>
         </div>
     </div>
@@ -325,6 +331,15 @@
 <script th:src="@{/bootstrap/js/respond.min.js}"/>
 <script th:src="@{/bootstrap/js/html5shiv.min.js}"/>
 <script th:src="@{/js/index.js}"/>
+
+
+<!--<script th:inline="javascript">-->
+    <!--$(function () {-->
+        <!--var user = [[${session.user}]];-->
+        <!--console.log('user : ' + user);-->
+    <!--})-->
+<!--</script>-->
+
 <script type="text/javascript">
     //屏幕改变事件
     window.onresize = function () {
@@ -353,7 +368,7 @@
     $('#login').click(function () {
         var url = '/user/login';
         var data = $('#loginFrom').serializeArray();
-        index.login_from(data,url);
+        index.login_from(data, url);
     })
 
 
@@ -361,7 +376,7 @@
     $('#register').click(function () {
         var url = '/user/register';
         var data = $('#registerFrom').serializeArray();
-        index.register_from(data,url);
+        index.register_from(data, url);
     })
 
     //关闭提示框后，返回注册页面
@@ -370,15 +385,15 @@
     })
 
     //手机输入完成后校验手机号码
-    $('#registerTelephoneNumber').blur(function(){
+    $('#registerTelephoneNumber').blur(function () {
         var regular = /^1\d{10}$/;
         var number = $('#registerTelephoneNumber').val();
-        if( regular.test( number ) ){
-            $('#helpBlock2').parent().attr('class','form-group has-primary');
-            $('#helpBlock2').attr('class','help-block hidden');
+        if (regular.test(number)) {
+            $('#helpBlock2').parent().attr('class', 'form-group has-primary');
+            $('#helpBlock2').attr('class', 'help-block hidden');
         } else {
-            $('#helpBlock2').parent().attr('class','form-group has-error');
-            $('#helpBlock2').attr('class','help-block show');
+            $('#helpBlock2').parent().attr('class', 'form-group has-error');
+            $('#helpBlock2').attr('class', 'help-block show');
         }
     })
 
@@ -386,12 +401,12 @@
     $('#registerPassWord').blur(function () {
         var regular = /^[a-zA-Z\d_]{8,}$/;
         var password = $('#registerPassWord').val()
-        if( regular.test( password ) ){
-            $('#helpBlock3').parent().attr('class','form-group has-primary');
-            $('#helpBlock3').attr('class','help-block hidden');
+        if (regular.test(password)) {
+            $('#helpBlock3').parent().attr('class', 'form-group has-primary');
+            $('#helpBlock3').attr('class', 'help-block hidden');
         } else {
-            $('#helpBlock3').parent().attr('class','form-group has-error');
-            $('#helpBlock3').attr('class','help-block show');
+            $('#helpBlock3').parent().attr('class', 'form-group has-error');
+            $('#helpBlock3').attr('class', 'help-block show');
         }
     })
 </script>

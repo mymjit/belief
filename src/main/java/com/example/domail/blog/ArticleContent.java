@@ -1,8 +1,7 @@
 package com.example.domail.blog;
 
-import com.sun.javafx.beans.IDProperty;
-
 import javax.persistence.*;
+import java.io.Serializable;
 
 /**
  * @Explain : 文章内容
@@ -10,15 +9,15 @@ import javax.persistence.*;
  * @Date : Created in 2017/9/20
  */
 @Entity
-public class ArticleContent {
+public class ArticleContent implements Serializable {
 
     @Id
     @GeneratedValue
     private Integer id;               //主键
-    @JoinColumn( name = "article")
-    @ManyToOne (cascade = CascadeType.ALL, optional = true )
+    @JoinColumn(name = "article")
+    @ManyToOne(cascade = CascadeType.ALL, optional = true)
     private Article article;          //关联的文章表
-    private String  paragraphContent; //段落内容
+    private String paragraphContent; //段落内容
     private Integer paragraphSort;    //段落排序
 
     public ArticleContent() {

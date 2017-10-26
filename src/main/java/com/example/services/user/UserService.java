@@ -1,20 +1,15 @@
 package com.example.services.user;
 
 import com.example.domail.user.User;
-import com.example.repository.user.UserRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
-import javax.transaction.Transactional;
 
 /**
- * @Explain :
- * @Author : while
- * @Date : Created in 2017/10/12
+ * @Date    : Created in 2017/10/12
+ * @Author  : while
+ * @Explain : 用户操作的接口
  */
 public interface UserService {
 
-    public User register(User user);
+    User register(User user);
 
-    public User login(User user);
+    User login(User user);
 }

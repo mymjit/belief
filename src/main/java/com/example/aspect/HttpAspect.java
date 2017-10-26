@@ -15,9 +15,9 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 import javax.servlet.http.HttpServletRequest;
 
 /**
- *@Author   : whilte
- *@Date     : 2017/10/16
- *@Describe : 面向切面
+ * @Author : whilte
+ * @Date : 2017/10/16
+ * @Describe : 面向切面
  */
 @Aspect
 @Component  //不加这个注解的话, 使用@Autowired 就不能注入进去了
@@ -37,87 +37,93 @@ public class HttpAspect {
     private final static Logger logger = LoggerFactory.getLogger(HttpAspect.class);
 
 
-
-
     /**
-     *@Describe : 针对莫个切点进行切入,类似方法拷贝
-     *@Method   : log
-     *@Param    : []
-     *@Return   : void * com.example.controller.*.*.*(..)
+     * @Method   : log
+     * @Param    : []
+     * @Return   : void * com.example.controller.*.*.*(..)
+     * @Describe : 针对莫个切点进行切入,类似方法拷贝,对所有 controller内的方法进行切入
      */
     //针对所有http请求进行切割
     @Pointcut("execution(public * com.example.controller..*(..))")
-    public void log(){
-
+    public void log() {
     }
 
 
     /**
-     *@Describe : 在方法执行前做一些事情
-     *@Method   : doBetore
-     *@Param    : [joinPoint]
-     *@Return   : void
+     * @Method   : doBetore
+     * @Param    : [joinPoint]
+     * @Describe : 方法执行前的函方法
      */
     @Before("log()")
-    public void doBetore(JoinPoint joinPoint){
-        ServletRequestAttributes attributes =(ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
-        HttpServletRequest request =attributes.getRequest();
-//        //ip
-//        logger.info("ip                : {}",request.getRemoteAddr());
-//        //url   请求的URL
-//        logger.info("url               : {}",request.getRequestURI());
-//        //参数
-//        logger.info("args              : {}",joinPoint.getArgs());
-//        //method  请求的方式
-//        logger.info("requestMode       : {}",request.getMethod());
-//        //请求的类+方法名
-//        logger.info("className         : {}",joinPoint.getSignature().getDeclaringTypeName()+"."+joinPoint.getSignature().getName());
-
-        executionLog.setStartTime_ns( System.nanoTime() );
-        executionLog.setIp( request.getRemoteAddr());
-        executionLog.setUrl( request.getRequestURI() );
-        Object[] objects =joinPoint.getArgs();
-        if (objects.length > 0 ){ //针对没有参数项处理
-            if( objects[0] instanceof HttpServletRequest ){
-                //方法没有参数时joinPoint.getArgs会返回一个request对象 用户Gson.toJson去解析会导致循环无法退出最终内存溢出
-            } else {
-                executionLog.setArgs( gson.toJson( joinPoint.getArgs() ) );
-            }
-        }
-        executionLog.setClassName( joinPoint.getSignature().getDeclaringTypeName()+"."+joinPoint.getSignature().getName());
-        executionLog.setRequestMode( request.getMethod() );
+    public void doBetore(JoinPoint joinPoint) {
+        ServletRequestAttributes attributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
+        HttpServletRequest request = attributes.getRequest();
+        //ip
+        executionLog.setIp(request.getRemoteAddr());
+        //url   请求的URL
+        executionLog.setUrl(request.getRequestURI());
+        //请求的参数
+        executionLog.setArgs(getArgs(joinPoint.getArgs()));
+        //请求的类+方法名
+        executionLog.setClassName(joinPoint.getSignature().getDeclaringTypeName() + "." + joinPoint.getSignature().getName());
+        //请求的方式 GET POST
+        executionLog.setRequestMode(request.getMethod());
+        //方法执行开始时间
+        executionLog.setStartTime_ns(System.nanoTime());
     }
 
 
     /**
-     *@Describe : 在方法执行后做一切事情
-     *@Method   : doAfter
-     *@Param    : []
-     *@Return   : void
+     * @Method   : doAfter
+     * @Return   : void
+     * @Describe : 方法执行后的方法
      */
     @After("log()")
-    public void doAfter(){
-        logger.info("test");
-        executionLog.setEndTime_ns( System.nanoTime() );
-        executionLog.setMethodAccessTimes( increaseUniqueVisitor().toString() );
-        executionLog.setMethodRunningTime( runTime() );
+    public void doAfter() {
+        //方法执行结束时间 单位NS
+        executionLog.setEndTime_ns(System.nanoTime());
+        //方法实时访问人数 没意义
+        executionLog.setMethodAccessTimes(increaseUniqueVisitor().toString());
+        //方法运行时间
+        executionLog.setMethodRunningTime(runTime());
     }
 
-    //打印 处理后的返回内容
-    @AfterReturning( returning = "object" ,pointcut = "log()")
-    public void doAfterReturning(Object object){
-        logger.info("response          : {}",object.toString());
-        executionLog.setResponse( gson.toJson(object) );
+    /**
+     *@Describe : 方法执行完毕返回前要执行的方法，获取返回的内容
+     *@Method   : doAfterReturning
+     *@Param    : [object]
+     */
+    @AfterReturning(returning = "object", pointcut = "log()")
+    public void doAfterReturning(Object object) {
+        // 返回数据
+        executionLog.setResponse(gson.toJson(object));
         executionLogService.save(executionLog);//保存日志
     }
 
-    private Integer increaseUniqueVisitor(){
+    private Integer increaseUniqueVisitor() {
         return this.uniqueVisitor++;
     }
 
-    private String runTime(){
-       Long runtime = executionLog.getEndTime_ns() - executionLog.getStartTime_ns();
-       return runtime.toString();
+    
+    private String runTime() {
+        Long runtime = executionLog.getEndTime_ns() - executionLog.getStartTime_ns();
+        return runtime.toString();
+    }
+
+    private String getArgs(Object [] objects){
+        StringBuffer stringBuffer = new StringBuffer();
+        if (objects.length > 0) { //针对没有参数项处理
+            for (Object object : objects) {
+                if (object instanceof HttpServletRequest) {
+                    //无论方法有没有参数joinPoint.getArgs会返回一个request对象
+                    //用户Gson.toJson去解析会导致循环无法退出最终内存溢出
+                } else {
+                    //参数
+                    stringBuffer.append(gson.toJson(object));
+                }
+            }
+        }
+        return stringBuffer.toString();
     }
 
 }

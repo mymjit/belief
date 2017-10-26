@@ -3,6 +3,7 @@ package com.example.domail.blog;
 import com.example.domail.user.User;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -13,22 +14,22 @@ import java.util.List;
  * @Date : Created in 2017/9/20
  */
 @Entity
-public class Article {
+public class Article implements Serializable {
 
     @Id
     @GeneratedValue
     private Integer id;           //主键
-    @JoinColumn( name = "user" )
-    @ManyToOne (cascade = CascadeType.ALL, optional = true )
-    private User    user;         //文章作者 ( 外键: 用户 )
-    private String  title;        //文章标题
-    private Date    createTime;   //创建时间
-    private String  original;     //文章出处 (可选,文章来源其他网站的要标明出处Url)
+    @JoinColumn(name = "user")
+    @ManyToOne(cascade = CascadeType.ALL, optional = true)
+    private User user;         //文章作者 ( 外键: 用户 )
+    private String title;        //文章标题
+    private Date createTime;   //创建时间
+    private String original;     //文章出处 (可选,文章来源其他网站的要标明出处Url)
     private Integer likeNumber;   //点赞数
     private Integer stepNumber;   //点踩数
 
-    @OneToMany( mappedBy = "article", cascade = CascadeType.ALL)
-    private List< ArticleContent > articleContents = new ArrayList< ArticleContent >(0);
+    @OneToMany(mappedBy = "article", cascade = CascadeType.ALL)
+    private List<ArticleContent> articleContents = new ArrayList<ArticleContent>(0);
 
     public Article() {
     }

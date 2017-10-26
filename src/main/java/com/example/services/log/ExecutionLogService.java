@@ -5,9 +5,9 @@ import com.example.domail.log.ExecutionLog;
 /**
  * @Author : while
  * @Date : 2017/10/17
- * @Describe :
+ * @Describe : 方法执行日志的接口
  */
 public interface ExecutionLogService {
 
-    public ExecutionLog save(ExecutionLog executionLog);
+    ExecutionLog save(ExecutionLog executionLog);
 }

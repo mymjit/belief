@@ -9,9 +9,9 @@ import org.springframework.data.jpa.repository.Query;
  * @Author : while
  * @Date : Created in 2017/10/12
  */
-public interface UserRepository extends JpaRepository<User,Integer > {
+public interface UserRepository extends JpaRepository<User, Integer> {
 
 
-    @Query( value = "SELECT telephone_number , password FROM user u WHERE u.telephone_number=?" , nativeQuery = true)
+    @Query(value = "SELECT telephone_number , password FROM user u WHERE u.telephone_number=?", nativeQuery = true)
     public User findByUserNameOne(String name);
 }

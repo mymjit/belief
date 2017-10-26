@@ -5,14 +5,20 @@ package com.example.domail;
  */
 public class Result<T> {
 
-    /** 状态码 **/
+    /**
+     * 状态码
+     **/
     private Integer code;
 
-    /**提示信息 **/
-    private String  msg;
+    /**
+     * 提示信息
+     **/
+    private String msg;
 
-    /** 具体内容 **/
-    private  T   data;
+    /**
+     * 具体内容
+     **/
+    private T data;
 
     public Result() {
     }
