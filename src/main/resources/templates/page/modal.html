@@ -1,0 +1,106 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>模态框</title>
+</head>
+<body>
+
+<div th:fragment="modal">
+    <!-- 登入模态框  -->
+    <div class="modal fade" id="login_modal" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel1">欢迎登入</h4>
+                </div>
+                <div class="modal-body">
+                    <form id="login_from">
+                        <div class="form-group has-primary">
+                            <label for="telephone_number">手 机:</label>
+                            <input class="form-control" type="text" maxlength="11" id="telephone_number"
+                                   name="telephoneNumber" placeholder="请输入您注册的手机号码！"/></div>
+                            <span id="help_user" class="help-block hidden">请输入您的手机号码！</span>
+                        <div class="form-group has-primary">
+                            <label for="password">密&nbsp;&nbsp;&nbsp;&nbsp;码：</label>
+                            <input class="form-control" type="password" id="password" name="password" placeholder="请输入密码"/>
+                            <span id="help_pass" class="help-block hidden">请输入密码！</span>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button id="register_button" type="button" class="btn btn-success" style="float: left;">
+                        注册账号
+                    </button>
+                    <button id="login" type="button" class="btn btn-primary" style="float: right;">点我登入</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--       注册模态框       -->
+    <div class="modal fade" id="register_modal" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">注册账号</h4>
+                </div>
+                <div class="modal-body">
+                    <form id="register_from">
+                        <div class="form-group has-primary">
+                            <label for="register_telephone">手 机:</label>
+                            <input type="text" class="form-control" id="register_telephone" maxlength="11"
+                                   name="telephoneNumber" placeholder="请输入你的手机号码!"/>
+                            <span id="help_block1" class="help-block hidden">请输入正确的手机号码！</span>
+                        </div>
+                        <div class="form-group has-primary">
+                            <label for="register_password">密&nbsp;&nbsp;&nbsp;&nbsp;码:</label>
+                            <input type="password" class="form-control" id="register_password" name="password"
+                                   placeholder="请输入密码"/>
+                            <span id="help_block2" class="help-block hidden">密码必须大于8位,由数字/符号自由组合！</span>
+                        </div>
+
+                        <div class="form-group has-primary">
+                            <label class="control-label" for="confirm_password">确认密码:</label>
+                            <input type="password" class="form-control" id="confirm_password" placeholder="请输入确认密码"/>
+                            <span id="help_block3" class="help-block hidden">密码与确认密码不一直请重新输入！</span>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button id="register" type="button" class="btn btn-primary" data-toggle="tooltip" data-placement="left"
+                            title="Tooltip on left">注册账号
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--       对话框       -->
+    <div class="modal fade" id="message_model" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="news">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title">消息提示</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group has-primary">
+                        <span id="message" class="text-success">注册成功</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+</div>
+</body>
+</html>

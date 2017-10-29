@@ -1,6 +1,5 @@
 package com.example.domail;
 
-import org.springframework.stereotype.Component;
 
 /**
  * http请求返回的最外层对象

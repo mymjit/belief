@@ -49,7 +49,6 @@ public class UserServiceImpl implements UserService {
             throw new UserException(ResultEnum.LOGIN_ACCOUNT_ERROR);
         } else {  //验证密码
             if ( md5Util.checkPassword(user.getTelephoneNumber(), user_base.getTelephoneNumber()) ) {
-                //顺利通过返回登入成功 写入cookie
                 return user_base;
             } else {
                 //抛出密码错误异常
@@ -58,4 +57,19 @@ public class UserServiceImpl implements UserService {
         }
     }
 
+    /**
+     *@Param    : [telephoneNumber]
+     *@Method   : telephoneAvailable
+     *@Return   : boolean
+     *@Describe : 验证手机账号是否可用,可用返回true,不可用返回false
+     */
+    @Override
+    public boolean telephoneAvailable(String telephoneNumber) {
+        boolean flag= true;
+        User user = userRepository.findByTelephoneNumber(telephoneNumber);
+        if ( null != user ){
+            flag = false;
+        }
+        return flag;
+    }
 }

@@ -12,6 +12,9 @@ import org.springframework.data.jpa.repository.Query;
 public interface UserRepository extends JpaRepository<User, Integer> {
 
 
+    @Query( value = "SELECT  telephone_number FROM user u WHERE u.telephone_number=?", nativeQuery = true)
+    User findByTelephoneNumber(String telephone_number);
+
     @Query(value = "SELECT telephone_number , password FROM user u WHERE u.telephone_number=?", nativeQuery = true)
-    public User findByUserNameOne(String name);
+    User findByUserNameOne(String name);
 }

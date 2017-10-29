@@ -47,13 +47,16 @@ public enum ResultEnum {
 
     //600 自定义常量
     REGISTER_SUCCESS              (600,"注册成功！"),
+    ACCOUNT_AVAILABLE             (601,"账号可用！"),
+    LOGIN_SUCCESS                 (602,"登入成功！"),
 
     //700 自定义常量
     REQUEST_DATA_IS_EMPTY         (700,"请输入或填写数据！"),
     DATA_DUPLICATION              (701,"数据已存在,请更改！"),
     USER_ALREADY_EXISTS           (702,"用户已存在,请重新输入！"),
     LOGIN_ACCOUNT_ERROR           (703,"用户名错误,请重新输入！"),
-    LOGIN_PASSWORD_ERROR          (704,"用户密码错误,请重新输入！");
+    LOGIN_PASSWORD_ERROR          (704,"用户密码错误,请重新输入！"),
+    ACCOUNT_UNAVAILABLE           (705,"账号不可用！");
 
     private Integer code;
 
