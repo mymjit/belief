@@ -1,10 +1,12 @@
-package com.example.domail;
+package com.example.model;
 
 
 /**
- * http请求返回的最外层对象
+ *@Date     : 2017/10/31 
+ *@Author   : whilte
+ *@Describe : 返回数据模型
  */
-public class Result<T> {
+public class ResultModel<T> {
 
     /**
      * 状态码
@@ -21,7 +23,7 @@ public class Result<T> {
      **/
     private T data;
 
-    public Result() {
+    public ResultModel() {
     }
 
     public Integer getCode() {

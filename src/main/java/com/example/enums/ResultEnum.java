@@ -54,8 +54,8 @@ public enum ResultEnum {
     REQUEST_DATA_IS_EMPTY         (700,"请输入或填写数据！"),
     DATA_DUPLICATION              (701,"数据已存在,请更改！"),
     USER_ALREADY_EXISTS           (702,"用户已存在,请重新输入！"),
-    LOGIN_ACCOUNT_ERROR           (703,"用户名错误,请重新输入！"),
-    LOGIN_PASSWORD_ERROR          (704,"用户密码错误,请重新输入！"),
+    LOGIN_ACCOUNT_ERROR           (703,"用户不存在！"),
+    LOGIN_PASSWORD_ERROR          (704,"密码错误,请重新输入！"),
     ACCOUNT_UNAVAILABLE           (705,"账号不可用！");
 
     private Integer code;

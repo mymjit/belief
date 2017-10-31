@@ -23,7 +23,7 @@ public class Md5Util {
     public static void
     main(String[] args) {
         //调用此方法进行加密
-        String admin = Md5Util.getSecret("admin");
+        String admin = Md5Util.getSecret("11111111");
         System.out.println(admin);
         //调用此方法进行解密
         boolean sign = Md5Util.checkPassword("admin", "$2a$10$4AbJeEig15URSb6xJou7EOrD3iZ4qcLd28RfahT/mAi5x2OdzG.xC");

@@ -15,8 +15,8 @@ import javax.transaction.Transactional;
  * @Author : while
  * @Date : 2017/10/17
  * @Describe :
- * @CachePut 相当于update()操作
- * @Cacheable 相当于insert()操作
+ * @CachePut   相当于update()操作
+ * @Cacheable  相当于insert()操作
  * @CacheEvict 相当于delete()操作
  */
 @Service
@@ -31,8 +31,8 @@ public class UserServiceImpl implements UserService {
 
     @Transactional   //事物管理  查询不需要
     public User register(User user) {
-        User user_base = userRepository.findByUserNameOne(user.getTelephoneNumber());
-        if (null != user_base) { //如果数据库中存在该用户登入名称抛出用户已存在异常
+        User base_user = userRepository.findByUserTelephoneNumberOne(user.getTelephoneNumber());
+        if (null != base_user) { //如果数据库中存在该用户登入名称抛出用户已存在异常
             throw new UserException(ResultEnum.USER_ALREADY_EXISTS);
         }
         //将密码进行加密处理
@@ -42,14 +42,14 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User login(User user) {
-        User user_base = userRepository.findByUserNameOne(user.getTelephoneNumber());
-        if (null != user_base) { //如果用户不存在
+    public User login( User user) {
+        User base_user = userRepository.findByUserTelephoneNumberOne(user.getTelephoneNumber());
+        if (null == base_user) {
             //抛出用户不存在异常
             throw new UserException(ResultEnum.LOGIN_ACCOUNT_ERROR);
         } else {  //验证密码
-            if ( md5Util.checkPassword(user.getTelephoneNumber(), user_base.getTelephoneNumber()) ) {
-                return user_base;
+            if ( md5Util.checkPassword(user.getPassword(), base_user.getPassword()) ) {
+                return base_user;
             } else {
                 //抛出密码错误异常
                 throw new UserException(ResultEnum.LOGIN_PASSWORD_ERROR);

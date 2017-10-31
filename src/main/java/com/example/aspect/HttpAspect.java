@@ -3,6 +3,8 @@ package com.example.aspect;
 import com.example.domail.log.ExecutionLog;
 import com.example.services.log.ExecutionLogService;
 import com.google.gson.Gson;
+import org.apache.catalina.Session;
+import org.apache.catalina.session.StandardSessionFacade;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.*;
 import org.slf4j.Logger;
@@ -20,10 +22,8 @@ import javax.servlet.http.HttpServletRequest;
  * @Describe : 面向切面
  */
 @Aspect
-@Component  //不加这个注解的话, 使用@Autowired 就不能注入进去了
+@Component
 public class HttpAspect {
-
-    private Integer uniqueVisitor = 0; //接口访问次数
 
     @Autowired
     private Gson gson;
@@ -44,7 +44,7 @@ public class HttpAspect {
      * @Describe : 针对莫个切点进行切入,类似方法拷贝,对所有 controller内的方法进行切入
      */
     //针对所有http请求进行切割
-    @Pointcut("execution(public * com.example.controller..*(..))")
+    @Pointcut("execution(public * com.example.controller..*.*(..))")
     public void log() {
     }
 
@@ -58,12 +58,14 @@ public class HttpAspect {
     public void doBetore(JoinPoint joinPoint) {
         ServletRequestAttributes attributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
         HttpServletRequest request = attributes.getRequest();
+        executionLog = new ExecutionLog();
         //ip
         executionLog.setIp(request.getRemoteAddr());
-        //url   请求的URL
+        //url请求的URL
         executionLog.setUrl(request.getRequestURI());
+        Object [] objects = joinPoint.getArgs();
         //请求的参数
-        executionLog.setArgs(getArgs(joinPoint.getArgs()));
+        executionLog.setArgs(getArgs(objects));
         //请求的类+方法名
         executionLog.setClassName(joinPoint.getSignature().getDeclaringTypeName() + "." + joinPoint.getSignature().getName());
         //请求的方式 GET POST
@@ -82,8 +84,6 @@ public class HttpAspect {
     public void doAfter() {
         //方法执行结束时间 单位NS
         executionLog.setEndTime_ns(System.nanoTime());
-        //方法实时访问人数 没意义
-        executionLog.setMethodAccessTimes(increaseUniqueVisitor().toString());
         //方法运行时间
         executionLog.setMethodRunningTime(runTime());
     }
@@ -100,11 +100,6 @@ public class HttpAspect {
         executionLogService.save(executionLog);//保存日志
     }
 
-    private Integer increaseUniqueVisitor() {
-        return this.uniqueVisitor++;
-    }
-
-    
     private String runTime() {
         Long runtime = executionLog.getEndTime_ns() - executionLog.getStartTime_ns();
         return runtime.toString();
@@ -114,10 +109,13 @@ public class HttpAspect {
         StringBuffer stringBuffer = new StringBuffer();
         if (objects.length > 0) { //针对没有参数项处理
             for (Object object : objects) {
+                logger.info( "对象类型 : {}",object.toString() );
                 if (object instanceof HttpServletRequest) {
                     //无论方法有没有参数joinPoint.getArgs会返回一个request对象
-                    //用户Gson.toJson去解析会导致循环无法退出最终内存溢出
-                } else {
+                    //用Gson.toJson去解析会导致循环无法退出最终内存溢出
+                } else if ( object instanceof StandardSessionFacade){
+                    //不需要记录缓存中的数据
+                }else {
                     //参数
                     stringBuffer.append(gson.toJson(object));
                 }
@@ -125,5 +123,6 @@ public class HttpAspect {
         }
         return stringBuffer.toString();
     }
+
 
 }

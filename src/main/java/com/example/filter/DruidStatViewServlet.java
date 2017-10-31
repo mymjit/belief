@@ -31,7 +31,6 @@ import javax.sql.DataSource;
         }
 )
 public class DruidStatViewServlet extends StatViewServlet {
-
         @Bean(name = "dataSource")
         @Primary
         @ConfigurationProperties(prefix = "spring.datasource")

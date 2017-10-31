@@ -302,9 +302,12 @@ var index = {
             index.login_from();
         }
     },
+
+
     login_from: function () {
         var url = "/user/login"
         var data = $('#login_from').serialize();
+        console.log(data);
         my_ajax.ajax_common(
             url, data, 'post',
             function (data) {
@@ -315,8 +318,11 @@ var index = {
                 index.message_model();  //弹出提示
                 if( 602 == data.code ){
                     console.log("注册成功 {}: ", data);
+                    index.user_update(data.data.id);
+                    index.user_icon_css(data.data.telephoneNumber);
                 } else {
                     setTimeout(function () {
+                        index.message_model_css_warning();
                         index.message_model();
                         index.login_model();
                     },3000)
@@ -326,6 +332,16 @@ var index = {
                 console.log("请求发送失败 : {}", e);
             }
         )
+    },
+
+    //登入成功将用户图标改变
+    user_icon_css : function (userName) {
+        $('#user_icon').attr('class','glyphicon glyphicon-user');
+        $('#user_icon').children('strong').text(userName);
+    },
+
+    user_update: function (id) {
+        $('#token').text(id);
     }
 
 }

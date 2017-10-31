@@ -31,18 +31,17 @@
 <body>
 <div class="container" style="width: 100% ; height: 100%;">
     <!-- 大屏幕的页头 -->
-    <div th:include="/page/header :: (${session.user ne null} ? 'user' :'admin')"></div>
-
+    <div th:include="/page/header :: header "></div>
 
     <!--       对应标签页要显示的内容       -->
     <div class="tab-content">
         <!-- 主页显示的模块  -->
         <div role="tabpanel" class="tab-pane active" id="home">
-           <div th:include="/page/middle_home :: ment1"></div>
+            <div th:include="/page/middle_home :: ment1"></div>
         </div>
         <!--     书屋显示的模块     -->
         <div role="tabpanel" class="tab-pane" id="profile">
-           <div th:include="/page/middle_house :: ment2"></div>
+            <div th:include="/page/middle_house :: ment2"></div>
         </div>
         <!--     日记显示的模块     -->
         <div role="tabpanel" class="tab-pane" id="messages">
@@ -52,9 +51,7 @@
 </div>
 
 
-
 <div th:include="/page/modal :: modal"></div>
-
 
 
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
@@ -66,7 +63,9 @@
 <script th:src="@{/js/index.js}"/>
 <script th:src="@{/js/ajax_package.js}"/>
 
+
 <script th:inline="javascript">
+
 
     /******* 登入模板 ********/
     //打开登入模态框
@@ -78,14 +77,14 @@
         index.telephone_number_verification();
     })
 
-    $('#password').blur(function () {
+    $('#password').blur( function () {
         index.password_verification();
     })
-
     //点击登入按钮
-    $('#login').click(function () {
+    $('#login').click( function () {
         index.login_from_verification();
     })
+
     /******* 注册模板 ********/
     //点击注册按钮
     $('#register_button').click(function () {
@@ -109,6 +108,8 @@
     $('#register').click(function () {
         index.register_button_from();
     })
+
+
 </script>
 </body>
 </html>

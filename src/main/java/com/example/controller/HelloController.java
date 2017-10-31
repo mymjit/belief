@@ -6,6 +6,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import javax.servlet.http.HttpServletRequest;
+
 @Controller
 public class HelloController {
 
@@ -13,7 +15,7 @@ public class HelloController {
     private Integer uniqueVisitor = 0; //实时访问次数
 
     @GetMapping(value = "/")
-    public String index() {
+    public String index(HttpServletRequest request) {
         count();
         return "index";
     }

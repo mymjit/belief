@@ -21,10 +21,11 @@ public class Article implements Serializable {
     private Integer id;           //主键
     @JoinColumn(name = "user")
     @ManyToOne(cascade = CascadeType.ALL, optional = true)
-    private User user;         //文章作者 ( 外键: 用户 )
-    private String title;        //文章标题
-    private Date createTime;   //创建时间
-    private String original;     //文章出处 (可选,文章来源其他网站的要标明出处Url)
+    private User user;            //文章作者 ( 外键: 用户 )
+    private String isopen;        //是否公开
+    private String title;         //文章标题
+    private Date createTime;      //创建时间
+    private String original;      //文章出处 (可选,文章来源其他网站的要标明出处Url)
     private Integer likeNumber;   //点赞数
     private Integer stepNumber;   //点踩数
 
@@ -34,11 +35,11 @@ public class Article implements Serializable {
     public Article() {
     }
 
-    public Article(Integer id, String title, User user, Date createTime, String original, Integer likeNumber,
+    public Article(User user, String isopen, String title, Date createTime, String original, Integer likeNumber,
                    Integer stepNumber, List<ArticleContent> articleContents) {
-        this.id = id;
-        this.title = title;
         this.user = user;
+        this.isopen = isopen;
+        this.title = title;
         this.createTime = createTime;
         this.original = original;
         this.likeNumber = likeNumber;
@@ -54,20 +55,28 @@ public class Article implements Serializable {
         this.id = id;
     }
 
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
     public User getUser() {
         return user;
     }
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public String getIsopen() {
+        return isopen;
+    }
+
+    public void setIsopen(String isopen) {
+        this.isopen = isopen;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public Date getCreateTime() {
@@ -114,8 +123,9 @@ public class Article implements Serializable {
     public String toString() {
         return "Article{" +
                 "id=" + id +
-                ", title='" + title + '\'' +
                 ", user=" + user +
+                ", isopen='" + isopen + '\'' +
+                ", title='" + title + '\'' +
                 ", createTime=" + createTime +
                 ", original='" + original + '\'' +
                 ", likeNumber=" + likeNumber +

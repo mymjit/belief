@@ -19,7 +19,6 @@ public class ExecutionLogServiceImpl implements ExecutionLogService {
     @Autowired
     private ExecutionLogRepository executionLogRepository;
 
-    @Override
     @Transactional
     public ExecutionLog save(ExecutionLog executionLog) {
         return executionLogRepository.save(executionLog);

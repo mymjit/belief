@@ -12,10 +12,4 @@ import org.springframework.data.jpa.repository.JpaRepository;
 public interface ExecutionLogRepository extends JpaRepository<ExecutionLog, Integer> {
 
 
-    @SQLInsert(sql = "insert into execution_log( args, class_name, end_time_ns, ip," +
-            " method_access_times, method_running_time, request_mode, response," +
-            " start_time_ns, url ) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?) ")
-    public ExecutionLog save(ExecutionLog executionLog);
-
-
 }

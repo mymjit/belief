@@ -12,9 +12,9 @@ import org.springframework.data.jpa.repository.Query;
 public interface UserRepository extends JpaRepository<User, Integer> {
 
 
-    @Query( value = "SELECT  telephone_number FROM user u WHERE u.telephone_number=?", nativeQuery = true)
+    @Query( value = "SELECT  telephone_number FROM user AS u WHERE u.telephone_number=?", nativeQuery = true)
     User findByTelephoneNumber(String telephone_number);
 
-    @Query(value = "SELECT telephone_number , password FROM user u WHERE u.telephone_number=?", nativeQuery = true)
-    User findByUserNameOne(String name);
+    @Query( value = "SELECT * FROM user WHERE telephone_number =?", nativeQuery = true )
+    User findByUserTelephoneNumberOne( String telephoneNumber );
 }
