@@ -5,62 +5,69 @@
 <body>
 
 <div th:fragment="ment1">
-    <div class="jumbotron">
-        <marquee scrollamount="15" behavior="alternate" direction="right" align="middle">公告栏！！！
-        </marquee>
-        <marquee scrollamount="15">公告栏！！！</marquee>
-        <marquee scrollamount="15">公告栏！！！</marquee>
+    <div id="carousel-example-generic" class="carousel " data-ride="carousel">
+        <!-- Indicators -->
+        <ol class="carousel-indicators">
+            <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+            <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+            <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+        </ol>
+        <!-- Wrapper for slides -->
+        <div class="carousel-inner" role="listbox">
+            <div class="item active thumbnail">
+                <img class="img-rounded" th:src="@{/imgs/1.png}" width="100%"/>
+                <div class="carousel-caption">
+                    一
+                </div>
+            </div>
+            <div class="item thumbnail">
+                <img class="img-rounded" th:src="@{/imgs/2.png}" width="100%"/>
+                <div class="carousel-caption">
+                    二
+                </div>
+            </div>
+            <div class="item thumbnail">
+                <img class="img-rounded" th:src="@{/imgs/3.png}" width="100%"/>
+                <div class="carousel-caption">
+                    三
+                </div>
+            </div>
+        </div>
     </div>
+
     <div class="row">
-        <div class="col-xs-12 col-sm-6 col-md-6">
-            <div class="panel panel-primary">
-                <div class="panel-heading">文章内容</div>
-                <table class="table table-hover table-condensed">
-                    <thead>
-                    <tr>
-                        <td>ID</td>
-                        <td>标题</td>
-                        <td>详情</td>
-                        <td>作者</td>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr>
-                        <td>ID</td>
-                        <td>标题</td>
-                        <td>详情</td>
-                        <td>作者</td>
-                    </tr>
-                    </tbody>
-                </table>
+        <div class="col-xs-4 col-sm-4 col-md-4">
+            <div class="thumbnail">
+                <a href="">
+                    <img th:src="@{/imgs/4.jpg}"  alt="..."/>
+                    <div class="caption">
+                        <h5>Thumbnail label</h5>
+                        <p>描述信息</p>
+                    </div>
+                </a>
             </div>
         </div>
 
-        <div class="col-xs-12 col-sm-6 col-md-6">
-            <div class="panel panel-success">
-                <div class="panel-heading">
-                    <h3 class="panel-title">精彩新闻</h3>
+        <div class="col-xs-4 col-sm-4 col-md-4">
+            <div class="thumbnail">
+                <img th:src="@{/imgs/5.jpg}" alt="..."/>
+                <div class="caption">
+                    <h5>Thumbnail label</h5>
+                    <p>描述信息</p>
                 </div>
-                <table class="table table-hover table-condensed">
-                    <thead>
-                    <tr>
-                        <td>ID</td>
-                        <td>标题</td>
-                        <td>详情</td>
-                        <td>作者</td>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr>
-                        <td>ID</td>
-                        <td>标题</td>
-                        <td>详情</td>
-                        <td>作者</td>
-                    </tr>
-                    </tbody>
-                </table>
             </div>
         </div>
+
+        <div class="col-xs-4 col-sm-4 col-md-4">
+            <div class="thumbnail">
+                <img th:src="@{/imgs/6.jpg}"  alt="..."/>
+                <div class="caption">
+                    <h5>Thumbnail label</h5>
+                    <p>描述信息</p>
+                </div>
+            </div>
+        </div>
+
     </div>
 </div>
 

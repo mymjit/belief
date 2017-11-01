@@ -96,4 +96,7 @@ public class RedisTokenManager implements TokenManager {
         redisTemplate.delete(telephoneNumber);
     }
 
+
+
+
 }

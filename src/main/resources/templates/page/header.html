@@ -5,41 +5,40 @@
 </head>
 <body>
 <div th:fragment="header">
-    <div class="large_screen" style="margin-top: 10px;">
-        <nav class="navbar navbar-default navbar-static-top">
-            <ul class="nav nav-justified nav-pills" role="tablist">
-                <li role="presentation" class="active">
-                    <a href="#home" class="text-primary" aria-controls="home" role="tab" data-toggle="tab">
-                        <span class="glyphicon glyphicon-home" aria-hidden="true">
-                            <strong>主页</strong>
-                        </span>
-                    </a>
-                </li>
-                <li role="presentation">
-                    <a href="#profile" class="text-info" aria-controls="profile" role="tab" data-toggle="tab">
-                        <span class="glyphicon glyphicon-book" aria-hidden="true">
-                            <strong>书屋</strong>
-                        </span>
-                    </a>
-                </li>
-                <li role="presentation">
-                    <a href="#messages" class="text-muted" aria-controls="messages" role="tab"
-                       data-toggle="tab">
-                        <span class="glyphicon glyphicon-pencil" aria-hidden="true">
-                            <strong>日记</strong>
-                        </span>
-                    </a>
-                </li>
-                <li id="login_button" role="presentation">
-                    <a class="text-success">
-                        <span id="user_icon" class="glyphicon glyphicon-grain" aria-hidden="true">
-                            <strong class="user-account"> 登入解锁更多功能</strong>
-                        </span>
-                    </a>
-                </li>
-            </ul>
-        </nav>
-    </div>
+    <ul class="nav nav-justified nav-pills" role="tablist">
+        <li role="presentation" class="active">
+            <a href="#home" class="text-primary" aria-controls="home" role="tab" data-toggle="tab">
+                <span class="glyphicon glyphicon-home" aria-hidden="true">
+                    <strong>主页</strong>
+                </span>
+            </a>
+        </li>
+        <li role="presentation">
+            <a href="#profile" class="text-info" aria-controls="profile" role="tab" data-toggle="tab">
+                <span class="glyphicon glyphicon-book" aria-hidden="true">
+                    <strong>书屋</strong>
+                </span>
+            </a>
+        </li>
+        <li role="presentation">
+            <a href="#messages" class="text-muted" aria-controls="messages" role="tab"
+               data-toggle="tab">
+                <span class="glyphicon glyphicon-pencil" aria-hidden="true">
+                    <strong>日记</strong>
+                </span>
+            </a>
+        </li>
+        <li id="login_button" role="presentation">
+            <a class="text-success">
+                <span id="user_icon" class="glyphicon glyphicon-grain" aria-hidden="true">
+                    <strong class="user-account">
+                        admin
+                        <span class="badge">3</span>
+                    </strong>
+                </span>
+            </a>
+        </li>
+    </ul>
 </div>
 </body>
 </html>

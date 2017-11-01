@@ -3,7 +3,6 @@ package com.example.aspect;
 import com.example.domail.log.ExecutionLog;
 import com.example.services.log.ExecutionLogService;
 import com.google.gson.Gson;
-import org.apache.catalina.Session;
 import org.apache.catalina.session.StandardSessionFacade;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.*;
@@ -109,7 +108,6 @@ public class HttpAspect {
         StringBuffer stringBuffer = new StringBuffer();
         if (objects.length > 0) { //针对没有参数项处理
             for (Object object : objects) {
-                logger.info( "对象类型 : {}",object.toString() );
                 if (object instanceof HttpServletRequest) {
                     //无论方法有没有参数joinPoint.getArgs会返回一个request对象
                     //用Gson.toJson去解析会导致循环无法退出最终内存溢出

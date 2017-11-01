@@ -5,67 +5,128 @@
 <body>
 <div th:fragment="ment2">
     <div class="row">
-        <div class="col-xs-6 col-md-4">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <strong>文章标题</strong>
-                </div>
-                <!-- 文章标题 -->
-                <ol class="list-unstyled">
-                    <li>文章标题</li>
-                    <li>文章标题</li>
-                    <li>文章标题</li>
-                    <li>文章标题</li>
-                    <li>文章标题</li>
-                </ol>
-            </div>
-        </div>
-        <div class="col-xs-12 col-md-8">
-            <div class="well well-sm">
+        <div class="col-xs-4">
+            <!-- 左边下拉列表 -->
+            <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="">
                 <div class="panel panel-default">
-                    <div class="panel-body">
-                        <p class="text-info">
-                            文章内容
-                            Nullam quis risus eget urna mollis ornare vel eu leo. Cum sociis natoque penatibus
-                            et magnis dis parturient montes, nascetur ridiculus mus. Nullam id dolor id nibh
-                            ultricies vehicula.
-
-                            Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus
-                            mus. Donec ullamcorper nulla non metus auctor fringilla. Duis mollis, est non
-                            commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Donec
-                            ullamcorper nulla non metus auctor fringilla.
-
-                            Maecenas sed diam eget risus varius blandit sit amet non magna. Donec id elit non
-                            mi porta gravida at eget metus. Duis mollis, est non commodo luctus, nisi erat
-                            porttitor ligula, eget lacinia odio sem nec elit.
-                        </p>
+                    <div class="panel-heading" role="tab" id="headingOne">
+                        <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-controls="collapseOne">
+                            Article classification #1
+                        </a>
+                    </div>
+                    <!--  panel-collapse collapse in 打开列表 -->
+                    <div id="collapseOne" class="panel-collapse collapse " role="tabpanel" aria-labelledby="headingOne">
+                        <ul class="nav nav-pills nav-stacked">
+                            <li><a href="#">Collapsible1.1</a></li>
+                            <li><a href="#">Collapsible1.2</a></li>
+                            <li><a href="#">Collapsible1.3</a></li>
+                        </ul>
                     </div>
                 </div>
+
                 <div class="panel panel-default">
-                    <div class="panel-body">
-                        <div class="well well-sm">
-                            <input type="text" class="form-control" placeholder="输入你的讨论..."/>
-                            <button type="button" style="margin-top: 5px; margin-left: 93%;"
+                    <div class="panel-heading" role="tab" id="headingTwo">
+                        <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
+                            Article classification #2
+                        </a>
+                    </div>
+
+                    <div id="collapseTwo" class="panel-collapse collapse" aria-labelledby="headingTwo">
+                        <ul class="nav nav-pills nav-stacked">
+                            <li><a href="#">Collapsible2.1</a></li>
+                            <li><a href="#">Collapsible2.2</a></li>
+                            <li><a href="#">Collapsible2.3</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="panel panel-default">
+                    <div class="panel-heading" id="headingThree">
+                        <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" >
+                            Article classification #3
+                        </a>
+                    </div>
+
+                    <div id="collapseThree" class="panel-collapse collapse" aria-labelledby="headingThree">
+                        <ul class="nav nav-pills nav-stacked">
+                            <li><a href="#">Collapsible3.1</a></li>
+                            <li><a href="#">Collapsible3.2</a></li>
+                            <li><a href="#">Collapsible3.3</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="panel panel-default">
+                    <div class="panel-heading" id="headingFive">
+                        <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseFive" >
+                            Article classification #4
+                        </a>
+                    </div>
+
+                    <div id="collapseFive" class="panel-collapse collapse" aria-labelledby="headingFive">
+                        <ul class="nav nav-pills nav-stacked">
+                            <li><a href="#">Collapsible4.1</a></li>
+                            <li><a href="#">Collapsible4.2</a></li>
+                            <li><a href="#">Collapsible4.3</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <!-- 右边内容显示 -->
+        <div class="col-xs-8">
+            <div class="panel panel-default" style="height: 100%;" >
+                <div class="panel-body" >
+                    <p class="text-center">
+                        文章标题
+                    </p>
+                    <span style="float : left ">发布日期：2017/10/31</span>
+                    <span style="float : right; ">作者：whilte</span>
+                    <br/>
+                    <br/>
+                    <p class="text-info">
+                        Nullam quis risus eget urna mollis ornare vel eu leo. Cum sociis natoque penatibus
+                        et magnis dis parturient montes, nascetur ridiculus mus. Nullam id dolor id nibh
+                        ultricies vehicula.
+
+                        Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus
+                        mus. Donec ullamcorper nulla non metus auctor fringilla. Duis mollis, est non
+                        commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Donec
+                        ullamcorper nulla non metus auctor fringilla.
+
+                        Maecenas sed diam eget risus varius blandit sit amet non magna. Donec id elit non
+                        mi porta gravida at eget metus. Duis mollis, est non commodo luctus, nisi erat
+                        porttitor ligula, eget lacinia odio sem nec elit.
+                    </p>
+                </div>
+
+                <div class="panel-body">
+                    <div class="well well-sm">
+                        <input type="text" class="form-control" placeholder="输入你的讨论..."/>
+
+                        <div class="text-right">
+                            <button type="button" style="margin-top: 5px;"
                                     class="btn btn-info btn-sm">评论
                             </button>
                         </div>
-                        <div class="well well-sm">
-                            <p class="text-left">
-                                Left aligned text. Left aligned text.Left aligned text.Left aligned text.Left
-                                aligned text.Left aligned text.
-                            </p>
-                            <p class="text-right">姓名 2017/8/9</p>
-                        </div>
-                        <div class="well well-sm">
-                            <p class="text-left">Left aligned text.</p>
-                            <p class="text-right">姓名 2017/8/9</p>
-                        </div>
+                    </div>
+
+                    <div class="well well-sm">
+                        <p class="text-left">
+                            Left aligned text. Left aligned text.Left aligned text.Left aligned text.Left
+                            aligned text.Left aligned text.
+                        </p>
+                        <p class="text-right">别名</p>
+                    </div>
+                    <div class="well well-sm">
+                        <p class="text-left">Left aligned text.</p>
+                        <p class="text-right">别名</p>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
-
 </body>
 </html>
