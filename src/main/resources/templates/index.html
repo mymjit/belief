@@ -8,13 +8,13 @@
     <title>主页</title>
 
     <!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
-    <link rel="stylesheet" th:href="@{/bootstrap/css/bootstrap.css}"/>
+    <link rel="stylesheet" th:href="@{/components/bootstrap/css/bootstrap.css}"/>
     <!-- 可选的 Bootstrap 主题文件（一般不用引入） -->
-    <link rel="stylesheet" th:href="@{/bootstrap/css/bootstrap-theme.css}"/>
+    <link rel="stylesheet" th:href="@{/components/bootstrap/css/bootstrap-theme.css}"/>
     <!-- 基于bootstrap的富文本编辑器 -->
-    <link rel="stylesheet" th:href="@{/summernote/dist/summernote.css}"/>
-    <!-- css3特效插件 -->
-    <link rel="stylesheet" th:href="@{/bootstrap/css/animate.css}"/>
+    <link rel="stylesheet" th:href="@{/components/summernote/dist/summernote.css}"/>
+    <!-- css3特效插件 ：https://www.awesomes.cn/repo/daneden/animate-css -->
+    <link rel="stylesheet" th:href="@{/components/animate/animate.css}"/>
 
     <style type="text/css">
         /************ 实现大屏幕div下ul的上下居中 ************/
@@ -71,15 +71,15 @@
 
 
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-<script th:src="@{/jquery/jquery.min.js}"/>
-<script th:src="@{/jquery/jquery.cookie.js}"/>
+<script th:src="@{/components/jquery/jquery.min.js}"/>
+<script th:src="@{/components/jquery/jquery.cookie.js}"/>
 <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
-<script th:src="@{/bootstrap/js/bootstrap.js}"/>
-<script th:src="@{/bootstrap/js/respond.min.js}"/>
-<script th:src="@{/bootstrap/js/html5shiv.min.js}"/>
+<script th:src="@{/components/bootstrap/js/bootstrap.min.js}"/>
+<script th:src="@{/components/bootstrap/js/respond.min.js}"/>
+<script th:src="@{/components/bootstrap/js/html5shiv.min.js}"/>
 
-<script th:src="@{/summernote/dist/summernote.js}"/>
-<script th:src="@{/summernote/dist/lang/summernote-zh-CN.js}"/>
+<script th:src="@{/components/summernote/dist/summernote.min.js}"/>
+<script th:src="@{/components/summernote/dist/lang/summernote-zh-CN.js}"/>
 
 <!-- 自有js  -->
 <script th:src="@{/js/package/header.js}"/>
