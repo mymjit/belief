@@ -5,70 +5,74 @@
 <body>
 
 <div th:fragment="ment1">
-    <div id="carousel-example-generic" class="carousel " data-ride="carousel">
-        <!-- Indicators -->
-        <ol class="carousel-indicators">
-            <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
-            <li data-target="#carousel-example-generic" data-slide-to="1"></li>
-            <li data-target="#carousel-example-generic" data-slide-to="2"></li>
-        </ol>
-        <!-- Wrapper for slides -->
-        <div class="carousel-inner" role="listbox">
-            <div class="item active thumbnail">
-                <img class="img-rounded" th:src="@{/imgs/1.png}" width="100%"/>
-                <div class="carousel-caption">
-                    一
+    <div  class="animated shake">
+        <div id="carousel-example-generic" class="carousel " data-ride="carousel">
+            <!-- Indicators -->
+            <ol class="carousel-indicators">
+                <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+                <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+                <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+            </ol>
+            <!-- Wrapper for slides -->
+            <div class="carousel-inner" role="listbox">
+                <div class="item active thumbnail">
+                    <img class="img-rounded" th:src="@{/imgs/1.png}" width="100%"/>
+                    <div class="carousel-caption">
+                        一
+                    </div>
                 </div>
-            </div>
-            <div class="item thumbnail">
-                <img class="img-rounded" th:src="@{/imgs/2.png}" width="100%"/>
-                <div class="carousel-caption">
-                    二
+                <div class="item thumbnail">
+                    <img class="img-rounded" th:src="@{/imgs/2.png}" width="100%"/>
+                    <div class="carousel-caption">
+                        二
+                    </div>
                 </div>
-            </div>
-            <div class="item thumbnail">
-                <img class="img-rounded" th:src="@{/imgs/3.png}" width="100%"/>
-                <div class="carousel-caption">
-                    三
+                <div class="item thumbnail">
+                    <img class="img-rounded" th:src="@{/imgs/3.png}" width="100%"/>
+                    <div class="carousel-caption">
+                        三
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
 
-    <div class="row">
-        <div class="col-xs-4 col-sm-4 col-md-4">
-            <div class="thumbnail">
-                <a href="">
-                    <img th:src="@{/imgs/4.jpg}"  alt="..."/>
+        <div class="row">
+            <div class="col-xs-4 col-sm-4 col-md-4">
+                <div class="thumbnail">
+                    <a href="">
+                        <img th:src="@{/imgs/4.jpg}"  alt="..."/>
+                        <div class="caption">
+                            <h5>Thumbnail label</h5>
+                            <p>描述信息</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+            <div class="col-xs-4 col-sm-4 col-md-4">
+                <div class="thumbnail">
+                    <img th:src="@{/imgs/5.jpg}" alt="..."/>
                     <div class="caption">
                         <h5>Thumbnail label</h5>
                         <p>描述信息</p>
                     </div>
-                </a>
-            </div>
-        </div>
-
-        <div class="col-xs-4 col-sm-4 col-md-4">
-            <div class="thumbnail">
-                <img th:src="@{/imgs/5.jpg}" alt="..."/>
-                <div class="caption">
-                    <h5>Thumbnail label</h5>
-                    <p>描述信息</p>
                 </div>
             </div>
-        </div>
 
-        <div class="col-xs-4 col-sm-4 col-md-4">
-            <div class="thumbnail">
-                <img th:src="@{/imgs/6.jpg}"  alt="..."/>
-                <div class="caption">
-                    <h5>Thumbnail label</h5>
-                    <p>描述信息</p>
+            <div class="col-xs-4 col-sm-4 col-md-4">
+                <div class="thumbnail">
+                    <img th:src="@{/imgs/6.jpg}"  alt="..."/>
+                    <div class="caption">
+                        <h5>Thumbnail label</h5>
+                        <p>描述信息</p>
+                    </div>
                 </div>
             </div>
+
         </div>
 
     </div>
+
 </div>
 
 </body>

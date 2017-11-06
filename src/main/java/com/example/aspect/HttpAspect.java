@@ -69,8 +69,8 @@ public class HttpAspect {
         executionLog.setClassName(joinPoint.getSignature().getDeclaringTypeName() + "." + joinPoint.getSignature().getName());
         //请求的方式 GET POST
         executionLog.setRequestMode(request.getMethod());
-        //方法执行开始时间
-        executionLog.setStartTime_ns(System.nanoTime());
+        //方法执行开始时间 距离1970-01-01 多少秒
+        executionLog.setStartTime_ns(System.currentTimeMillis());
     }
 
 
@@ -81,8 +81,8 @@ public class HttpAspect {
      */
     @After("log()")
     public void doAfter() {
-        //方法执行结束时间 单位NS
-        executionLog.setEndTime_ns(System.nanoTime());
+        //方法执行结束时间 距离1970-01-01 多少秒
+        executionLog.setEndTime_ns(System.currentTimeMillis());
         //方法运行时间
         executionLog.setMethodRunningTime(runTime());
     }

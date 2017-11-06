@@ -4,30 +4,31 @@ import javax.persistence.*;
 import java.io.Serializable;
 
 /**
- * @Explain : 文章内容
- * @Author : while
- * @Date : Created in 2017/9/20
+ *@Date     : 2017/11/1
+ *@Author   : whilte
+ *@Describe : 文章段落
  */
 @Entity
 public class ArticleContent implements Serializable {
 
     @Id
     @GeneratedValue
-    private Integer id;               //主键
+    private Integer id;                //主键
     @JoinColumn(name = "article")
     @ManyToOne(cascade = CascadeType.ALL, optional = true)
-    private Article article;          //关联的文章表
-    private String paragraphContent; //段落内容
-    private Integer paragraphSort;    //段落排序
+    private Article article;           //关联的文章表
+    private String  paragraphContent;  //段落内容
+    private Integer paragraphSort;     //段落排序
+    private Integer state;             //状态(0 : 删除 1 :正常（默认）)
 
     public ArticleContent() {
     }
 
-    public ArticleContent(Integer id, Article article, String paragraphContent, Integer paragraphSort) {
-        this.id = id;
+    public ArticleContent(Article article, String paragraphContent, Integer paragraphSort, Integer state) {
         this.article = article;
         this.paragraphContent = paragraphContent;
         this.paragraphSort = paragraphSort;
+        this.state = state;
     }
 
     public Integer getId() {
@@ -62,6 +63,14 @@ public class ArticleContent implements Serializable {
         this.paragraphSort = paragraphSort;
     }
 
+    public Integer getState() {
+        return state;
+    }
+
+    public void setState(Integer state) {
+        this.state = state;
+    }
+
     @Override
     public String toString() {
         return "ArticleContent{" +
@@ -69,6 +78,7 @@ public class ArticleContent implements Serializable {
                 ", article=" + article +
                 ", paragraphContent='" + paragraphContent + '\'' +
                 ", paragraphSort=" + paragraphSort +
+                ", state=" + state +
                 '}';
     }
 }

@@ -4,7 +4,7 @@ spring:
      active: dev #发布时修改成发布的配置文件 prod
 
   datasource:
-     type: com.alibaba.druid.pool.DruidDataSource #阿里巴巴的数据库连接池
+     type: com.alibaba.druid.pool.DruidDataSource
      driver-class-name: com.mysql.jdbc.Driver
      url: jdbc:mysql://127.0.0.1:3306/belief?useUnicode=true&characterEncoding=utf-8&useSSL=false
      username: root
@@ -27,8 +27,7 @@ spring:
   redis:
      host: 127.0.0.1
      port: 6379
-     database: 0
-     password:
+     database: 1
      pool:
        max-wait: -1
        max-active: 8

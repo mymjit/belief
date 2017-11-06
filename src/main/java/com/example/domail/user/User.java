@@ -4,33 +4,32 @@ import com.example.domail.blog.Article;
 import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
-import javax.validation.GroupSequence;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * @Explain : 用户类
- * @Author : while
- * @Date : Created in 2017/9/20
- */
 
+/**
+ *@Date     : 2017/11/1
+ *@Author   : whilte
+ *@Describe : 用户类
+ */
 @Entity
 @Component
 public class User implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;                //主键
-    private String  userName;           //用户名字    (真实名字)
-    private String  alias;              //用户别名    (匿名)
-    private String  sex;                //性别       (年龄根据身份证动态获取)
+    private Integer id;                 //主键
+    private String  userName;           //用户名字   (真实名字)
+    private String  alias;              //用户别名   (匿名,禁止重复)
+    private String  sex;                //性别      (年龄根据身份证动态获取)
     private String  idCard;             //身份证
     private String  email;              //邮箱
     @Column( unique = true, length = 11)
-    private String  telephoneNumber;    //电话       (登入的账号,唯一)
-    private String  password;           //密码       (登入的密码)
-    private Integer integral;          //积分      (对网站的贡献)
-    private Integer state;             //账号状态   (控制账户销毁) (1.正常(默认的状态)  2.异常(存在被盗的可能) 3.拉黑(被系统禁止登入) )
+    private String  telephoneNumber;    //电话      (登入的账号,唯一)
+    private String  password;           //密码      (登入的密码)
+    private Integer integral;           //积分      (对网站的贡献)
+    private Integer state;              //账号状态   (控制账户销毁)(0.删除  1.正常(默认的状态)  2.异常(存在被盗的可能) 3.拉黑(被系统禁止登入) )
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<Article> articles = new ArrayList<Article>(0);

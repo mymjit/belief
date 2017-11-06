@@ -91,6 +91,7 @@ public class RedisTokenManager implements TokenManager {
      *@Return   : void
      *@Describe :
      */
+    
     @Override
     public void deleteToken(Long telephoneNumber) {
         redisTemplate.delete(telephoneNumber);
