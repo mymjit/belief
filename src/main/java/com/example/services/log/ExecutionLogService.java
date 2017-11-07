@@ -3,9 +3,9 @@ package com.example.services.log;
 import com.example.domail.log.ExecutionLog;
 
 /**
- * @Author : while
- * @Date : 2017/10/17
- * @Describe : 方法执行日志的接口
+ *@date     : 2017/11/6
+ *@author   : whilte
+ *@describe :
  */
 public interface ExecutionLogService {
 

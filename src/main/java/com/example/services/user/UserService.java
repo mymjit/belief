@@ -3,9 +3,9 @@ package com.example.services.user;
 import com.example.domail.user.User;
 
 /**
- * @Date    : Created in 2017/10/12
- * @Author  : while
- * @Explain : 用户操作的接口
+ *@date     : 2017/11/6
+ *@author   : whilte
+ *@describe :
  */
 public interface UserService {
 

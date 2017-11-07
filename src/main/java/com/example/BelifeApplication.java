@@ -6,10 +6,16 @@ import org.springframework.boot.web.servlet.ServletComponentScan;
 import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.scheduling.annotation.EnableScheduling;
 
+
+/**
+ *@date     : 2017/11/6
+ *@author   : whilte
+ *@describe :
+ */
 @EnableCaching
 @EnableScheduling
 @SpringBootApplication
-@ServletComponentScan //扫描自定义的注解
+@ServletComponentScan
 public class BelifeApplication {
     public static void main(String[] args) {
         SpringApplication.run(

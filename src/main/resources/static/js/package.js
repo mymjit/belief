@@ -19,6 +19,26 @@
 
         }
     })
+
+
+    /** processData用于对data参数进行序列化处理，默认值是true
+     * 因为 summernote已经对图片进行了序列化所以这里就不需要
+     */
+    $.extend({
+        sendFiles : function (url,data , success) {
+            $.ajax({
+                url  : url,
+                type : 'post',
+                data : data,
+                processData: false,
+                contentType: false,
+                success: function (data) {
+                    success(data);
+                }
+            })
+        }
+    })
+
 }(jQuery)
 
 

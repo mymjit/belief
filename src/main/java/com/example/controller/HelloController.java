@@ -8,16 +8,23 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 import javax.servlet.http.HttpServletRequest;
 
+/**
+ *@date     : 2017/11/6
+ *@author   : whilte
+ *@describe :
+ */
 @Controller
 public class HelloController {
 
     private final static Logger logger = LoggerFactory.getLogger(HelloController.class);
-    private Integer uniqueVisitor = 0; //实时访问次数
+
+    private Integer uniqueVisitor = 0;
 
     @GetMapping(value = "/")
     public String index(HttpServletRequest request) {
         count();
-        return "index";
+        String result = "index";
+        return result;
     }
 
     private void count() {

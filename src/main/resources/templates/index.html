@@ -29,7 +29,7 @@
             transform: translate(-50%, -50%);
         }
 
-        /*** 预加载样式 **/
+        /*** 文章字段控制的样式 **/
         .written {
             text-indent: 2em;
             word-spacing:4px;
@@ -74,36 +74,22 @@
 <script th:src="@{/components/jquery/jquery.min.js}"/>
 <script th:src="@{/components/jquery/jquery.cookie.js}"/>
 <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
-<script th:src="@{/components/bootstrap/js/bootstrap.min.js}"/>
+<script th:src="@{/components/bootstrap/js/bootstrap.js}"/>
 <script th:src="@{/components/bootstrap/js/respond.min.js}"/>
 <script th:src="@{/components/bootstrap/js/html5shiv.min.js}"/>
 
 <script th:src="@{/components/summernote/dist/summernote.min.js}"/>
 <script th:src="@{/components/summernote/dist/lang/summernote-zh-CN.js}"/>
 
-<!-- 自有js  -->
+<!-- 自有JS  -->
 <script th:src="@{/js/package/header.js}"/>
 <script th:src="@{/js/package/house.js}"/>
 <script th:src="@{/js/package.js}"/>
 
-
-
-
-
-
 <script th:inline="javascript">
     // 对轮播图进行滚动
     $('#carousel-example-generic').carousel({
-        interval: 2000
-    })
-
-    //富文本框初始化
-    $( document ).ready(function () {
-        $('#summernote').summernote({
-            lang: 'zh-CN',
-            placeholder: '请输入你想要的内容！',
-            height: 150,
-        });
+        interval: 5000
     })
 
 </script>

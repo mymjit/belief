@@ -7,27 +7,37 @@ import javax.persistence.*;
 import java.io.Serializable;
 
 /**
- * @Author : while
- * @Date : 2017/10/17
- * @Describe :
+ *@date     : 2017/11/6
+ *@author   : whilte
+ *@describe : 日志类
  */
 @Entity
 @Component
 public class ExecutionLog implements Serializable {
 
+    /** 主键 */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;                //主键
-    private String ip;                 //请求ip地址
-    private String url;                //请求的URL
+    private Integer id;
+    /** 请求ip地址 */
+    private String ip;
+    /** 请求的URL */
+    private String url;
+    /** 请求的参数项json字符 */
     @Column( columnDefinition = "TEXT" )
-    private String args;               //请求的参数项json字符
-    private String response;           //方法返回值
-    private String className;          //请求的类名+方法名
-    private String requestMode;        //请求的方式
-    private Long endTime_ns;           //方法执行后时间
-    private Long startTime_ns;         //方法执行前时间
-    private String methodRunningTime;  //方法执行时长
+    private String args;
+    /** 方法返回值 */
+    private String response;
+    /** 请求的类名+方法名 */
+    private String className;
+    /** 请求的方式 */
+    private String requestMode;
+    /** 方法执行后时间 */
+    private Long endTime_ns;
+    /** 方法执行前时间 */
+    private Long startTime_ns;
+    /** 方法执行时长 */
+    private String methodRunningTime;
 
     public ExecutionLog() {
     }

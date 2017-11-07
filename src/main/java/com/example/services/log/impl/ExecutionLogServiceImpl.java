@@ -8,10 +8,11 @@ import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 
+
 /**
- * @Author : while
- * @Date : 2017/10/17
- * @Describe :
+ *@date     : 2017/11/6
+ *@author   : whilte
+ *@describe :
  */
 @Service
 public class ExecutionLogServiceImpl implements ExecutionLogService {
@@ -19,6 +20,7 @@ public class ExecutionLogServiceImpl implements ExecutionLogService {
     @Autowired
     private ExecutionLogRepository executionLogRepository;
 
+    @Override
     @Transactional
     public ExecutionLog save(ExecutionLog executionLog) {
         return executionLogRepository.save(executionLog);

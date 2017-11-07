@@ -5,33 +5,33 @@ import com.example.enums.ResultEnum;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+
 /**
- *@Date     : 2017/10/26 
- *@Author   : whilte
- *@Describe : 返回类型根据类
+ *@date     : 2017/11/6
+ *@author   : whilte
+ *@describe : 返回数据封装类
  */
 @Component
 public class ResultUtil {
-
 
     @Autowired
     private static ResultEnum resultEnum;
 
     public static ResultModel success(String msg , Integer code , Object obj) {
-        ResultModel result = new ResultModel();
-        result.setMsg(msg);
-        result.setData( obj );
-        result.setCode(code);
-        return result;
+        ResultModel<Object> resultModel = new ResultModel();
+        resultModel.setMsg(msg);
+        resultModel.setData( obj );
+        resultModel.setCode(code);
+        return resultModel;
     }
 
 
     public static ResultModel success(ResultEnum resultEnum , Object obj) {
-        ResultModel result = new ResultModel();
-        result.setMsg(resultEnum.getMsg());
-        result.setCode(resultEnum.getCode());
-        result.setData(obj);
-        return result;
+        ResultModel resultModel = new ResultModel();
+        resultModel.setMsg(resultEnum.getMsg());
+        resultModel.setCode(resultEnum.getCode());
+        resultModel.setData(obj);
+        return resultModel;
     }
 
     public static ResultModel success(Object object) {
@@ -59,11 +59,11 @@ public class ResultUtil {
     }
 
 
-    public static ResultModel error(ResultEnum resultEnum , Object object) {
-        ResultModel result = new ResultModel();
+    public static ResultModel error(ResultEnum resultEnum , Object obj) {
+        ResultModel<Object> result = new ResultModel();
         result.setMsg  ( resultEnum.getMsg() );
         result.setCode ( resultEnum.getCode() );
-        result.setData ( object );
+        result.setData ( obj );
         return result;
     }
 

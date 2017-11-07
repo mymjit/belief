@@ -4,22 +4,27 @@ import javax.persistence.*;
 import java.io.Serializable;
 
 /**
- *@Date     : 2017/11/1
- *@Author   : whilte
- *@Describe : 文章段落
+ *@date     : 2017/11/1
+ *@author   : whilte
+ *@describe : 文章段落
  */
 @Entity
 public class ArticleContent implements Serializable {
 
+    /** 主键 */
     @Id
     @GeneratedValue
-    private Integer id;                //主键
+    private Integer id;
+    /** 关联的文章表 */
     @JoinColumn(name = "article")
     @ManyToOne(cascade = CascadeType.ALL, optional = true)
-    private Article article;           //关联的文章表
-    private String  paragraphContent;  //段落内容
-    private Integer paragraphSort;     //段落排序
-    private Integer state;             //状态(0 : 删除 1 :正常（默认）)
+    private Article article;
+    /** 段落内容 */
+    private String  paragraphContent;
+    /** 段落排序 */
+    private Integer paragraphSort;
+    /** 状态(0 : 删除 1 :正常（默认）) */
+    private Integer state;
 
     public ArticleContent() {
     }

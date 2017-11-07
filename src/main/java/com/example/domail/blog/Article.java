@@ -1,5 +1,6 @@
 package com.example.domail.blog;
 
+import com.example.domail.associated.ArticleLabel;
 import com.example.domail.user.User;
 
 import javax.persistence.*;
@@ -10,37 +11,49 @@ import java.util.List;
 
 
 /**
- *@Date     : 2017/11/1
- *@Author   : whilte
- *@Describe : 文章类
+ *@date     : 2017/11/1
+ *@author   : whilte
+ *@describe : 文章类
  */
 @Entity
 public class Article implements Serializable {
 
+    /** 主键  */
     @Id
     @GeneratedValue
-    private Integer id;           //主键
+    private Integer id;
+    /** 文章发布人 《外键》  */
     @JoinColumn(name = "user")
     @ManyToOne(cascade = CascadeType.ALL, optional = true)
-    private User    user;          //文章发布人 《外键》
-    private String  author;        //文章作者《表明出处 》
-    private Integer isopen;        //是否公开 (0: 私有， 1: 公开 )
-    private String  title;         //文章标题
-    private Date    createTime;    //创建时间
-    private String  original;      //文章出处 (可选,文章来源其他网站的要标明出处Url)
-    private Integer likeNumber;    //点赞数
-    private Integer stepNumber;    //点踩数
-    private Integer state;         //状态 (0删除, 1存在（默认） )
+    private User    user;
+    /** 文章作者《表明出处》  */
+    private String  author;
+    /** 是否公开 0: 私有， 1: 公开 */
+    private Integer isopen;
+    /** 文章标题 */
+    private String  title;
+    /** 创建时间 */
+    private Date    createTime;
+    /** 文章出处 (可选,文章来源其他网站的要标明出处Url) */
+    private String  original;
+    /** 点赞数 */
+    private Integer likeNumber;
+    /** 点踩数 */
+    private Integer stepNumber;
+    /** 数据状态 0删除, 1存在(默认)  */
+    private Integer state;
 
     @OneToMany(mappedBy = "article", cascade = CascadeType.ALL)
     private List<ArticleContent> articleContents = new ArrayList<ArticleContent>(0);
 
+    @OneToMany(mappedBy = "article", cascade = CascadeType.ALL)
+    private List< ArticleLabel > articleLabels = new ArrayList<>(0);
+
     public Article() {
     }
 
-
-    public Article(User user, String author, Integer isopen, String title, Date createTime, String original,
-                   Integer likeNumber, Integer stepNumber, Integer state, List<ArticleContent> articleContents) {
+    public Article(User user, String author, Integer isopen, String title, Date createTime, String original, Integer likeNumber, Integer stepNumber, Integer state,
+                   List<ArticleContent> articleContents, List<ArticleLabel> articleLabels) {
         this.user = user;
         this.author = author;
         this.isopen = isopen;
@@ -51,8 +64,8 @@ public class Article implements Serializable {
         this.stepNumber = stepNumber;
         this.state = state;
         this.articleContents = articleContents;
+        this.articleLabels = articleLabels;
     }
-
 
     public Integer getId() {
         return id;
@@ -142,6 +155,14 @@ public class Article implements Serializable {
         this.articleContents = articleContents;
     }
 
+    public List<ArticleLabel> getArticleLabels() {
+        return articleLabels;
+    }
+
+    public void setArticleLabels(List<ArticleLabel> articleLabels) {
+        this.articleLabels = articleLabels;
+    }
+
     @Override
     public String toString() {
         return "Article{" +
@@ -156,6 +177,7 @@ public class Article implements Serializable {
                 ", stepNumber=" + stepNumber +
                 ", state=" + state +
                 ", articleContents=" + articleContents +
+                ", articleLabels=" + articleLabels +
                 '}';
     }
 }

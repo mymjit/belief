@@ -15,10 +15,11 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
+
 /**
- * @Date : Created in 2017/10/12
- * @Author : while
- * @Explain : 用户的控制器
+ *@date     : 2017/11/6
+ *@author   : whilte
+ *@describe : 用户的控制器
  */
 @RestController
 @RequestMapping("/user")
@@ -35,10 +36,10 @@ public class UserController {
     private RedisTokenManager redisTokenManager;
 
     /**
-     *@Param    : [telephone]
-     *@Method   : telephoneAvailable
-     *@Return   : com.example.model.ResultModel<com.example.domail.user.User>
-     *@Describe :
+     *@param    : [telephone]
+     *@method   : telephoneAvailable
+     *@return   : com.example.model.ResultModel<com.example.domail.user.User>
+     *@describe : 电话验证是否可用
      */
     @GetMapping("/telephone/available")
     public ResultModel telephoneAvailable(
@@ -57,10 +58,10 @@ public class UserController {
         return result;
     }
     /**
-     *@Param    : [user]
-     *@Method   : register
-     *@Return   : com.example.model.ResultModel<com.example.domail.user.User>
-     *@Describe : 注册接口
+     *@param    : [user]
+     *@ethod   : register
+     *@return   : com.example.model.ResultModel<com.example.domail.user.User>
+     *@describe : 注册接口
      */
     @PostMapping("/register")
     public ResultModel<TokenManager> register(@Valid User user) {
@@ -79,10 +80,10 @@ public class UserController {
     }
 
     /**
-     *@Param    : [ user]
-     *@Method   : login
-     *@Return   : com.example.model.ResultModel<com.example.model.TokenModel>
-     *@Describe : 登入接口
+     *@param    : [ user]
+     *@method   : login
+     *@return   : com.example.model.ResultModel<com.example.model.TokenModel>
+     *@describe : 登入接口
      */
     @PostMapping("/login")
     public ResultModel<TokenModel> login(User user) {

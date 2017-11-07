@@ -1,46 +1,46 @@
 package com.example.domail.common;
 
-import com.example.domail.user.User;
+import com.example.domail.associated.ArticleLabel;
 
+import javax.persistence.*;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
- * @Date : 2017/11/3
- * @Author : while
- * @Describe : 标签
+ * @date : 2017/11/3
+ * @author : whiled
+ * @escribe : 标签
  */
+@Entity
 public class Label implements Serializable {
-    private Long   id ;
-    private User   user;      //标签所属 (用户自定义的标签)
-    private String labelName; //标签名称
-    private String type;      //标签类型 (图片有标签,文章也有标签(技术,心得,分享),用户也有标签)
+    /** 主键 */
+    @Id
+    @GeneratedValue
+    private Integer id ;
+    /** 标签名称 */
+    private String labelName;
+    /** 标签类型 (图片有标签, 文章也有标签, 用户也有标签) */
+    private String type;
 
+    @OneToMany(mappedBy = "label", cascade = CascadeType.ALL)
+    private List<ArticleLabel> articleLabels =new ArrayList<>(0);
 
     public Label() {
-
     }
 
-    public Label(Long id, User user, String labelName, String type) {
-        this.id = id;
-        this.user = user;
+    public Label(String labelName, String type, List<ArticleLabel> articleLabels) {
         this.labelName = labelName;
         this.type = type;
+        this.articleLabels = articleLabels;
     }
 
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
-    }
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
     }
 
     public String getLabelName() {
@@ -59,13 +59,21 @@ public class Label implements Serializable {
         this.type = type;
     }
 
+    public List<ArticleLabel> getArticleLabels() {
+        return articleLabels;
+    }
+
+    public void setArticleLabels(List<ArticleLabel> articleLabels) {
+        this.articleLabels = articleLabels;
+    }
+
     @Override
     public String toString() {
         return "Label{" +
                 "id=" + id +
-                ", user=" + user +
                 ", labelName='" + labelName + '\'' +
                 ", type='" + type + '\'' +
+                ", articleLabels=" + articleLabels +
                 '}';
     }
 }

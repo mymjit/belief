@@ -1,27 +1,46 @@
 +function($) {
     'use strict'; //严格模式
 
-
-    // 页面点击事件的捕获
-    $('#article_button').on('click' , function () {
-        console.log("文章发布按钮的点击事件！！！");
-        // 弹出发布文章的模态框
-        House.prototype.article_add_page_show();
-    });
-
+    //富文本框初始化
+    $( document ).ready(function () {
+        $('#summernote').summernote({
+            lang: 'zh-CN',
+            placeholder: '请输入你想要的内容！',
+            height: 150,
+            callbacks : {
+                onImageUpload : function (files,editor,$editable) {
+                    console.log(' 图片上传！ ');
+                    House.prototype.sendFile(files[0],editor,$editable);
+                }
+            }
+        });
+    })
 
 
     function House() {}
 
-    //控制弹出的显示与隐藏
-    House.prototype.article_model_toggle = function () {
-        $('#article_model').modal('toggle');
+    House.prototype.sendFile = function ( file,editor,$editable ) {
+        console.log(" sendFile上传图片！ ")
+        var fileName = false;
+        try{
+            fileName=file['name'];
+        }catch (e){
+            fileName =false;
+        }
+        if ( !fileName ){
+            $('.note-alarm').remove();
+        }
+        var forData = new FormData();
+        forData.append('file',file);
+        forData.append('key',fileName);
+        var url = '/picture/upload';
+        $.sendFiles(url,forData, function(data){
+            console.log('文件上传成功！')
+            //数据回显 将path传回即可
+            $('#topicOptionC').summernote('insertImage',path);
+        } );
     }
 
-    House.prototype.article_add_page_show = function (e) {
-        console.log("添加页面的切换！！");
-        e.ppreventDefault();
-        $('#article_add_page').tab('show');
-    }
+
 
 }(jQuery);
