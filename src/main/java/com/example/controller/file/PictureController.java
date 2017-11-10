@@ -59,10 +59,4 @@ public class PictureController {
         return resultModel;
     }
 
-
-
-
-
-
-
 }

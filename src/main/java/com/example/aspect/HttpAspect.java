@@ -16,9 +16,9 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 import javax.servlet.http.HttpServletRequest;
 
 /**
- * @Author : whilte
- * @Date : 2017/10/16
- * @Describe : 面向切面
+ * @author : whilte
+ * @date : 2017/10/16
+ * @describe : 面向切面
  */
 @Aspect
 @Component
@@ -28,7 +28,7 @@ public class HttpAspect {
     private Gson gson;
 
     @Autowired
-    private ExecutionLog executionLog; //添加实体类需要在实体类上 @Component 注解，不然报错
+    private ExecutionLog executionLog;
 
     @Autowired
     private ExecutionLogService executionLogService;
@@ -96,7 +96,7 @@ public class HttpAspect {
     public void doAfterReturning(Object object) {
         // 返回数据
         executionLog.setResponse(gson.toJson(object));
-        executionLogService.save(executionLog);//保存日志
+        executionLogService.save(executionLog);
     }
 
     private String runTime() {
@@ -106,7 +106,8 @@ public class HttpAspect {
 
     private String getArgs(Object [] objects){
         StringBuffer stringBuffer = new StringBuffer();
-        if (objects.length > 0) { //针对没有参数项处理
+        if (objects.length > 0) {
+            //针对没有参数项处理
             for (Object object : objects) {
                 if (object instanceof HttpServletRequest) {
                     //无论方法有没有参数joinPoint.getArgs会返回一个request对象

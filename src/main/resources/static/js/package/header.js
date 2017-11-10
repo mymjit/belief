@@ -1,5 +1,6 @@
 +function ($) {
-    'use strict'; //严格模式
+    'use strict';
+
     // 打开登入的模态框  prototype 属性定义函数不污染全局
     $('#login_button').on('click', function () {
         Index.prototype.login_model();
@@ -33,12 +34,10 @@
     $('#confirm_password').blur(function () {
         Index.prototype.confirm_password_verification();
     })
-
     //注册提交
     $('#register').click(function () {
         Index.prototype.register_button_from();
     })
-
 
     function Index() {
         return new Object();
@@ -72,7 +71,6 @@
         }
         return flag;
     }
-
 
     Index.prototype.login_from_verification = function () {
         var flag1 = Index.prototype.telephone_number_verification();
@@ -124,7 +122,6 @@
         return flag;
     }
 
-
     Index.prototype.login_from = function () {
         var url = "/user/login"
         var data = $('#login_from').serialize();
@@ -138,10 +135,10 @@
                 if (602 == data.code) {
                     console.log("注册成功 {}: ", data);
                     Index.prototype.user_icon_css(data.data.telephoneNumber);
-                    $.cookie('user' , data.data.telephoneNumber);
+                    $.cookie('user', data.data.telephoneNumber);
                     $.cookie('token', data.data.token);
                 } else {
-                    $('#message_model').on('hidden.bs.modal',function () {
+                    $('#message_model').on('hidden.bs.modal', function () {
                         Index.prototype.message_close_login();
                     })
                 }
@@ -186,7 +183,6 @@
             });
         }
     }
-
     //注册表单提交
     Index.prototype.register_button_from = function () {
         var flag = Index.prototype.register_from_verification();
@@ -240,11 +236,11 @@
         $('#help_block2').parent().attr('class', 'form-group has-primary');
         $('#help_block2').attr('class', 'help-block hidden');
     }
+
     Index.prototype.help_block2_css_warning = function () {
         $('#help_block2').parent().attr('class', 'form-group has-warning');
         $('#help_block2').attr('class', 'help-block show');
     }
-
     //注册模板中手机号码提示html控制
     Index.prototype.help_block2_html_update = function (str) {
         $('#help_block3').text(str);

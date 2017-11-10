@@ -12,7 +12,6 @@ import javax.servlet.annotation.WebInitParam;
  * @Date : 2017/10/18
  * @Describe :druid过滤器.对图片文件等类型过滤
  */
-
 @WebFilter(filterName = "druidWebStatFilter", urlPatterns = "/*",
         initParams = {
                 // 忽略资源
