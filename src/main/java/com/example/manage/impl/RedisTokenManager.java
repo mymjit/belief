@@ -11,8 +11,8 @@ import java.util.UUID;
 import java.util.concurrent.TimeUnit;
 
 /**
- * @Date     : 2017/10/31
- * @Author   : while
+ * @Date : 2017/10/31
+ * @Author : while
  * @Describe : 令牌管理
  */
 @Component
@@ -20,35 +20,35 @@ public class RedisTokenManager implements TokenManager {
     // token有效期（小时）
     public static final int TOKEN_EXPIRES_HOUR = 72;
 
-    private RedisTemplate <Long, String> redisTemplate;
+    private RedisTemplate<Long, String> redisTemplate;
 
     @Autowired
     public void setRedis(RedisTemplate redisTemplate) {
         this.redisTemplate = redisTemplate;
         //泛型设置成Long后必须更改对应的序列化方案
-        redisTemplate.setKeySerializer( new JdkSerializationRedisSerializer() );
+        redisTemplate.setKeySerializer(new JdkSerializationRedisSerializer());
     }
 
     /**
-     *@Param    : [telephoneNumber]
-     *@Method   : createToken
-     *@Return   : com.example.model.TokenModel
-     *@Describe : 
+     * @Param : [telephoneNumber]
+     * @Method : createToken
+     * @Return : com.example.model.TokenModel
+     * @Describe :
      */
     @Override
     public TokenModel createToken(Long telephoneNumber) {
-        String token =UUID.randomUUID().toString().replace("-","");
-        TokenModel tokenModel = new TokenModel(telephoneNumber,token);
-        redisTemplate.boundValueOps( telephoneNumber ).set(token,TOKEN_EXPIRES_HOUR , TimeUnit.HOURS);
+        String token = UUID.randomUUID().toString().replace("-", "");
+        TokenModel tokenModel = new TokenModel(telephoneNumber, token);
+        redisTemplate.boundValueOps(telephoneNumber).set(token, TOKEN_EXPIRES_HOUR, TimeUnit.HOURS);
         return tokenModel;
     }
 
 
     /**
-     *@Param    : [tokenModel]
-     *@Method   : checkToken
-     *@Return   : boolean
-     *@Describe : 
+     * @Param : [tokenModel]
+     * @Method : checkToken
+     * @Return : boolean
+     * @Describe :
      */
     @Override
     public boolean checkToken(TokenModel tokenModel) {
@@ -65,10 +65,10 @@ public class RedisTokenManager implements TokenManager {
     }
 
     /**
-     *@Param    : [authentication]
-     *@Method   : getToken
-     *@Return   : com.example.model.TokenModel
-     *@Describe :
+     * @Param : [authentication]
+     * @Method : getToken
+     * @Return : com.example.model.TokenModel
+     * @Describe :
      */
     @Override
     public TokenModel getToken(String authentication) {
@@ -86,18 +86,15 @@ public class RedisTokenManager implements TokenManager {
     }
 
     /**
-     *@Param    : [telephoneNumber]
-     *@Method   : deleteToken
-     *@Return   : void
-     *@Describe :
+     * @Param    : [telephoneNumber]
+     * @Method   : deleteToken
+     * @Return   : void
+     * @Describe :
      */
-    
     @Override
     public void deleteToken(Long telephoneNumber) {
         redisTemplate.delete(telephoneNumber);
     }
-
-
 
 
 }

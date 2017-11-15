@@ -22,14 +22,13 @@
         House.prototype.labelNameVerification();
     })
 
+    // 发布文章
     $('#articleReleaseButton').on( 'click' , function () {
         var flag = House.prototype.verification();
         console.log( ' flag :  ' , flag );
         var data = $('#articleFrom').serialize();
         console.log( ' from data :  ' , data );
     })
-
-
 
     var House = function () {}
 
@@ -42,7 +41,7 @@
         var label = $('#labelName');
         var value= label.val();
         if ( "" === value ){
-            console.warn('House.prototype.obtainLabers -> labelName is Null character ' )
+            console.warn('House.prototype.obtainLabers labelName is Null character ' )
         } else {
             var url  = '/labers';
             var data = {'laberName' : value }
