@@ -18,7 +18,7 @@ public class ExecutionLog implements Serializable {
     /** 主键 */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private long id;
     /** 请求ip地址 */
     private String ip;
     /** 请求的URL */
@@ -33,17 +33,18 @@ public class ExecutionLog implements Serializable {
     /** 请求的方式 */
     private String requestMode;
     /** 方法执行后时间 */
-    private Long endTime_ns;
+    private long endTime_ns;
     /** 方法执行前时间 */
-    private Long startTime_ns;
+    private long startTime_ns;
     /** 方法执行时长 */
     private String methodRunningTime;
+
 
     public ExecutionLog() {
     }
 
-    public ExecutionLog(String ip, String url, String args, String response, String className,
-                        String requestMode, Long endTime_ns, Long startTime_ns, String methodRunningTime) {
+    public ExecutionLog(String ip, String url, String args, String response, String className, String requestMode,
+                        long endTime_ns, long startTime_ns, String methodRunningTime) {
         this.ip = ip;
         this.url = url;
         this.args = args;
@@ -55,11 +56,11 @@ public class ExecutionLog implements Serializable {
         this.methodRunningTime = methodRunningTime;
     }
 
-    public Integer getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(long id) {
         this.id = id;
     }
 
@@ -111,19 +112,19 @@ public class ExecutionLog implements Serializable {
         this.requestMode = requestMode;
     }
 
-    public Long getEndTime_ns() {
+    public long getEndTime_ns() {
         return endTime_ns;
     }
 
-    public void setEndTime_ns(Long endTime_ns) {
+    public void setEndTime_ns(long endTime_ns) {
         this.endTime_ns = endTime_ns;
     }
 
-    public Long getStartTime_ns() {
+    public long getStartTime_ns() {
         return startTime_ns;
     }
 
-    public void setStartTime_ns(Long startTime_ns) {
+    public void setStartTime_ns(long startTime_ns) {
         this.startTime_ns = startTime_ns;
     }
 
@@ -150,4 +151,6 @@ public class ExecutionLog implements Serializable {
                 ", methodRunningTime='" + methodRunningTime + '\'' +
                 '}';
     }
+
+
 }

@@ -17,56 +17,51 @@ public class ArticleLabel implements Serializable {
     /** *主键 */
     @Id
     @GeneratedValue
-    private Long id;
-
-    @JoinColumn(name = "article")
-    @ManyToOne(cascade = CascadeType.ALL, optional = true)
-    private Article article;
-
-    @JoinColumn(name = "label")
-    @ManyToOne(cascade = CascadeType.ALL, optional = true)
-    private Label  label;
+    private long id;
+    private long  label_id;
+    private long  article_id;
 
 
     public ArticleLabel() {
+
     }
 
-    public ArticleLabel(Long id, Article article, Label label) {
-        this.id = id;
-        this.article = article;
-        this.label = label;
+    public ArticleLabel(long label_id, long article_id) {
+        this.label_id = label_id;
+        this.article_id = article_id;
     }
 
-    public Long getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(long id) {
         this.id = id;
     }
 
-    public Article getArticle() {
-        return article;
+    public long getLabel_id() {
+        return label_id;
     }
 
-    public void setArticle(Article article) {
-        this.article = article;
+    public void setLabel_id(long label_id) {
+        this.label_id = label_id;
     }
 
-    public Label getLabel() {
-        return label;
+    public long getArticle_id() {
+        return article_id;
     }
 
-    public void setLabel(Label label) {
-        this.label = label;
+    public void setArticle_id(long article_id) {
+        this.article_id = article_id;
     }
 
     @Override
     public String toString() {
         return "ArticleLabel{" +
                 "id=" + id +
-                ", article=" + article +
-                ", label=" + label +
+                ", label_id=" + label_id +
+                ", article_id=" + article_id +
                 '}';
     }
+
 }

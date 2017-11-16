@@ -21,15 +21,13 @@ public class Article implements Serializable {
     /** 主键  */
     @Id
     @GeneratedValue
-    private Integer id;
+    private long id;
     /** 文章发布人 《外键》  */
-    @JoinColumn(name = "user")
-    @ManyToOne(cascade = CascadeType.ALL, optional = true)
-    private User    user;
+    private long   user_id;
     /** 文章作者《表明出处》  */
     private String  author;
     /** 是否公开 0: 私有， 1: 公开 */
-    private Integer isopen;
+    private int isopen;
     /** 文章标题 */
     private String  title;
     /** 创建时间 */
@@ -37,24 +35,19 @@ public class Article implements Serializable {
     /** 文章出处 (可选,文章来源其他网站的要标明出处Url) */
     private String  original;
     /** 点赞数 */
-    private Integer likeNumber;
+    private int likeNumber;
     /** 点踩数 */
-    private Integer stepNumber;
+    private int stepNumber;
     /** 数据状态 0删除, 1存在(默认)  */
-    private Integer state;
+    private int state;
 
-    @OneToMany(mappedBy = "article", cascade = CascadeType.ALL)
-    private List<ArticleContent> articleContents = new ArrayList<ArticleContent>(0);
-
-    @OneToMany(mappedBy = "article", cascade = CascadeType.ALL)
-    private List< ArticleLabel > articleLabels = new ArrayList<>(0);
 
     public Article() {
     }
 
-    public Article(User user, String author, Integer isopen, String title, Date createTime, String original, Integer likeNumber, Integer stepNumber, Integer state,
-                   List<ArticleContent> articleContents, List<ArticleLabel> articleLabels) {
-        this.user = user;
+    public Article(long user_id, String author, int isopen, String title, Date createTime,
+                   String original, int likeNumber, int stepNumber, int state) {
+        this.user_id = user_id;
         this.author = author;
         this.isopen = isopen;
         this.title = title;
@@ -63,24 +56,22 @@ public class Article implements Serializable {
         this.likeNumber = likeNumber;
         this.stepNumber = stepNumber;
         this.state = state;
-        this.articleContents = articleContents;
-        this.articleLabels = articleLabels;
     }
 
-    public Integer getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(long id) {
         this.id = id;
     }
 
-    public User getUser() {
-        return user;
+    public long getUser_id() {
+        return user_id;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setUser_id(long user_id) {
+        this.user_id = user_id;
     }
 
     public String getAuthor() {
@@ -91,11 +82,11 @@ public class Article implements Serializable {
         this.author = author;
     }
 
-    public Integer getIsopen() {
+    public int getIsopen() {
         return isopen;
     }
 
-    public void setIsopen(Integer isopen) {
+    public void setIsopen(int isopen) {
         this.isopen = isopen;
     }
 
@@ -123,51 +114,35 @@ public class Article implements Serializable {
         this.original = original;
     }
 
-    public Integer getLikeNumber() {
+    public int getLikeNumber() {
         return likeNumber;
     }
 
-    public void setLikeNumber(Integer likeNumber) {
+    public void setLikeNumber(int likeNumber) {
         this.likeNumber = likeNumber;
     }
 
-    public Integer getStepNumber() {
+    public int getStepNumber() {
         return stepNumber;
     }
 
-    public void setStepNumber(Integer stepNumber) {
+    public void setStepNumber(int stepNumber) {
         this.stepNumber = stepNumber;
     }
 
-    public Integer getState() {
+    public int getState() {
         return state;
     }
 
-    public void setState(Integer state) {
+    public void setState(int state) {
         this.state = state;
-    }
-
-    public List<ArticleContent> getArticleContents() {
-        return articleContents;
-    }
-
-    public void setArticleContents(List<ArticleContent> articleContents) {
-        this.articleContents = articleContents;
-    }
-
-    public List<ArticleLabel> getArticleLabels() {
-        return articleLabels;
-    }
-
-    public void setArticleLabels(List<ArticleLabel> articleLabels) {
-        this.articleLabels = articleLabels;
     }
 
     @Override
     public String toString() {
         return "Article{" +
                 "id=" + id +
-                ", user=" + user +
+                ", user_id=" + user_id +
                 ", author='" + author + '\'' +
                 ", isopen=" + isopen +
                 ", title='" + title + '\'' +
@@ -176,8 +151,6 @@ public class Article implements Serializable {
                 ", likeNumber=" + likeNumber +
                 ", stepNumber=" + stepNumber +
                 ", state=" + state +
-                ", articleContents=" + articleContents +
-                ", articleLabels=" + articleLabels +
                 '}';
     }
 }

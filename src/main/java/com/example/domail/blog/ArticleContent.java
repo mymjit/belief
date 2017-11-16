@@ -14,42 +14,40 @@ public class ArticleContent implements Serializable {
     /** 主键 */
     @Id
     @GeneratedValue
-    private Integer id;
-    /** 关联的文章表 */
-    @JoinColumn(name = "article")
-    @ManyToOne(cascade = CascadeType.ALL, optional = true)
-    private Article article;
+    private long id;
+    /** 关联的文章表 <外键> */
+    private long article_id;
     /** 段落内容 */
     private String  paragraphContent;
     /** 段落排序 */
-    private Integer paragraphSort;
+    private int  paragraphSort;
     /** 状态(0 : 删除 1 :正常（默认）) */
-    private Integer state;
+    private int state;
 
     public ArticleContent() {
+
     }
 
-    public ArticleContent(Article article, String paragraphContent, Integer paragraphSort, Integer state) {
-        this.article = article;
+    public ArticleContent(long article_id, String paragraphContent, int state) {
+        this.article_id = article_id;
         this.paragraphContent = paragraphContent;
-        this.paragraphSort = paragraphSort;
         this.state = state;
     }
 
-    public Integer getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(long id) {
         this.id = id;
     }
 
-    public Article getArticle() {
-        return article;
+    public long getArticle_id() {
+        return article_id;
     }
 
-    public void setArticle(Article article) {
-        this.article = article;
+    public void setArticle_id(long article_id) {
+        this.article_id = article_id;
     }
 
     public String getParagraphContent() {
@@ -60,19 +58,19 @@ public class ArticleContent implements Serializable {
         this.paragraphContent = paragraphContent;
     }
 
-    public Integer getParagraphSort() {
+    public int getParagraphSort() {
         return paragraphSort;
     }
 
-    public void setParagraphSort(Integer paragraphSort) {
+    public void setParagraphSort(int paragraphSort) {
         this.paragraphSort = paragraphSort;
     }
 
-    public Integer getState() {
+    public int getState() {
         return state;
     }
 
-    public void setState(Integer state) {
+    public void setState(int state) {
         this.state = state;
     }
 
@@ -80,7 +78,7 @@ public class ArticleContent implements Serializable {
     public String toString() {
         return "ArticleContent{" +
                 "id=" + id +
-                ", article=" + article +
+                ", article_id=" + article_id +
                 ", paragraphContent='" + paragraphContent + '\'' +
                 ", paragraphSort=" + paragraphSort +
                 ", state=" + state +
