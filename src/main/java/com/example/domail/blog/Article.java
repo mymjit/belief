@@ -1,13 +1,9 @@
 package com.example.domail.blog;
 
-import com.example.domail.associated.ArticleLabel;
-import com.example.domail.user.User;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 
 /**
@@ -30,6 +26,8 @@ public class Article implements Serializable {
     private int isopen;
     /** 文章标题 */
     private String  title;
+    @Column( columnDefinition = "TEXT" )
+    private String paragraphContent;
     /** 创建时间 */
     private Date    createTime;
     /** 文章出处 (可选,文章来源其他网站的要标明出处Url) */
@@ -45,12 +43,13 @@ public class Article implements Serializable {
     public Article() {
     }
 
-    public Article(long user_id, String author, int isopen, String title, Date createTime,
-                   String original, int likeNumber, int stepNumber, int state) {
+    public Article(long user_id, String author, int isopen, String title, String paragraphContent,
+                   Date createTime, String original, int likeNumber, int stepNumber, int state) {
         this.user_id = user_id;
         this.author = author;
         this.isopen = isopen;
         this.title = title;
+        this.paragraphContent = paragraphContent;
         this.createTime = createTime;
         this.original = original;
         this.likeNumber = likeNumber;
@@ -96,6 +95,14 @@ public class Article implements Serializable {
 
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    public String getParagraphContent() {
+        return paragraphContent;
+    }
+
+    public void setParagraphContent(String paragraphContent) {
+        this.paragraphContent = paragraphContent;
     }
 
     public Date getCreateTime() {
@@ -146,6 +153,7 @@ public class Article implements Serializable {
                 ", author='" + author + '\'' +
                 ", isopen=" + isopen +
                 ", title='" + title + '\'' +
+                ", paragraphContent='" + paragraphContent + '\'' +
                 ", createTime=" + createTime +
                 ", original='" + original + '\'' +
                 ", likeNumber=" + likeNumber +
@@ -153,4 +161,5 @@ public class Article implements Serializable {
                 ", state=" + state +
                 '}';
     }
+    
 }

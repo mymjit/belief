@@ -5,8 +5,7 @@ import com.example.repository.log.ExecutionLogRepository;
 import com.example.services.log.ExecutionLogService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import javax.transaction.Transactional;
+import org.springframework.transaction.annotation.Transactional;
 
 
 /**
@@ -21,8 +20,10 @@ public class ExecutionLogServiceImpl implements ExecutionLogService {
     private ExecutionLogRepository executionLogRepository;
 
     @Override
-    @Transactional
-    public ExecutionLog save(ExecutionLog executionLog) {
-        return executionLogRepository.save(executionLog);
+    @Transactional(rollbackFor = Exception.class)
+    public void save(ExecutionLog executionLog) {
+        executionLogRepository.save(executionLog);
     }
+
+
 }

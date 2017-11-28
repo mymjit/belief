@@ -16,8 +16,8 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 import javax.servlet.http.HttpServletRequest;
 
 /**
- * @author : whilte
- * @date : 2017/10/16
+ * @author   : whilte
+ * @date     : 2017/10/16
  * @describe : 面向切面
  */
 @Aspect
@@ -55,9 +55,10 @@ public class HttpAspect {
      */
     @Before("log()")
     public void doBetore(JoinPoint joinPoint) {
+
+        executionLog = new ExecutionLog();
         ServletRequestAttributes attributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
         HttpServletRequest request = attributes.getRequest();
-        executionLog = new ExecutionLog();
         //ip
         executionLog.setIp(request.getRemoteAddr());
         //url请求的URL
@@ -70,7 +71,7 @@ public class HttpAspect {
         //请求的方式 GET POST
         executionLog.setRequestMode(request.getMethod());
         //方法执行开始时间 距离1970-01-01 多少秒
-        executionLog.setStartTime_ns(System.currentTimeMillis());
+        executionLog.setStartTime(System.currentTimeMillis());
     }
 
 
@@ -82,7 +83,7 @@ public class HttpAspect {
     @After("log()")
     public void doAfter() {
         //方法执行结束时间 距离1970-01-01 多少秒
-        executionLog.setEndTime_ns(System.currentTimeMillis());
+        executionLog.setEndTime(System.currentTimeMillis());
         //方法运行时间
         executionLog.setMethodRunningTime(runTime());
     }
@@ -100,7 +101,7 @@ public class HttpAspect {
     }
 
     private String runTime() {
-        Long runtime = executionLog.getEndTime_ns() - executionLog.getStartTime_ns();
+        Long runtime = executionLog.getEndTime() - executionLog.getStartTime();
         return runtime.toString();
     }
 

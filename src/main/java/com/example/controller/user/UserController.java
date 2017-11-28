@@ -59,7 +59,7 @@ public class UserController {
     }
     /**
      *@param    : [user]
-     *@ethod   : register
+     *@ethod    : register
      *@return   : com.example.model.ResultModel<com.example.domail.user.User>
      *@describe : 注册接口
      */
@@ -70,6 +70,8 @@ public class UserController {
             ResultEnum resultEnum = ResultEnum.REQUEST_DATA_IS_EMPTY;
             result =  ResultUtil.error( resultEnum,null );
         }
+
+        user.setState(1);
         user = userService.register(user);
         if (null != user) {
             ResultEnum resultEnum = ResultEnum.REGISTER_SUCCESS;

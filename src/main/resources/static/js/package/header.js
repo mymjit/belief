@@ -43,6 +43,8 @@
         return new Object();
     }
 
+
+
     Index.prototype.register_password_verification = function () {
         var flag = false;
         var regular_password = /^[a-zA-Z\d_]{8,}$/;

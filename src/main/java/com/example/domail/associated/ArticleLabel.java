@@ -1,7 +1,5 @@
 package com.example.domail.associated;
 
-import com.example.domail.blog.Article;
-import com.example.domail.common.Label;
 
 import javax.persistence.*;
 import java.io.Serializable;

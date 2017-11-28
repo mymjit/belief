@@ -15,9 +15,7 @@
     bootstrap :
         modal : 修改了 bootstrap源码来对模态框垂直居中
     
-     
 #### 前端依赖插件
     animate : css3动画特效 
-    
     simditor : twier的富文本框插件
                            

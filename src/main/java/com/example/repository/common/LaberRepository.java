@@ -7,8 +7,8 @@ import org.springframework.data.jpa.repository.Query;
 import java.util.List;
 
 /**
- * @author : while
- * @date : 2017/11/8
+ * @author   : while
+ * @date     : 2017/11/8
  * @describe :
  */
 public interface LaberRepository extends JpaRepository<Label, Integer > {

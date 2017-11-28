@@ -12,6 +12,8 @@
     <link rel="stylesheet" th:href="@{/components/bootstrap/css/bootstrap.css}"/>
     <!-- 可选的 Bootstrap 主题文件（一般不用引入） -->
     <link rel="stylesheet" th:href="@{/components/bootstrap/css/bootstrap-theme.css}"/>
+    <!--  multiple-select 多选框  -->
+    <link rel="stylesheet" th:href="@{/components/multiple-select/css/multiple-select.css}"/>
     <!-- css3特效插件 ：https://www.awesomes.cn/repo/daneden/animate-css -->
     <link rel="stylesheet" th:href="@{/components/animate/animate.css}"/>
     <!-- 富文本框插件 -->
@@ -31,6 +33,8 @@
             transform: translate(-50%, -50%);
         }
 
+        /** 隐藏滚动条,又可以滚动  **/
+        ::-webkit-scrollbar{width:0px}
         /*** 文章字段控制的样式 **/
         .written {
             text-indent: 2em;
@@ -49,8 +53,6 @@
             </nav>
         </div>
     </div>
-    <!-- 标签页 -->
-
     <!--       对应标签页要显示的内容       -->
     <div class="tab-content">
         <!-- 主页显示的模块  -->
@@ -66,25 +68,28 @@
             <div th:include="page/middle_diary::ment3"></div>
         </div>
     </div>
+
 </div>
 
 
 <div th:include="page/modal :: modal"></div>
 
 
-<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<!-- jQuery ( Bootstrap's JavaScript Plugins) -->
 <script th:src="@{/components/jquery/jquery.min.js}"/>
 <script th:src="@{/components/jquery/jquery.cookie.js}"/>
 <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
 <script th:src="@{/components/bootstrap/js/bootstrap.js}"/>
 <script th:src="@{/components/bootstrap/js/respond.min.js}"/>
 <script th:src="@{/components/bootstrap/js/html5shiv.min.js}"/>
-<!-- 富文本插件 -->
+<!-- multiple-select 多选框 -->
+<script th:src="@{/components/multiple-select/js/multiple-select.js}"/>
+<!-- simditor富文本插件 -->
 <script th:src="@{/components/simditor/scripts/module.js}"/>
 <script th:src="@{/components/simditor/scripts/hotkeys.js}"/>
 <script th:src="@{/components/simditor/scripts/uploader.js}"/>
 <script th:src="@{/components/simditor/scripts/simditor.js}"/>
-<!-- 自有JS  -->
+<!-- header.js 页面头部的操作 house.js页面内容的js  package.js常用js函数封装  -->
 <script th:src="@{/js/package/header.js}"/>
 <script th:src="@{/js/package/house.js}"/>
 <script th:src="@{/js/package.js}"/>

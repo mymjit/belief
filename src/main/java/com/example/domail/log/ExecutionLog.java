@@ -27,16 +27,17 @@ public class ExecutionLog implements Serializable {
     @Column( columnDefinition = "TEXT" )
     private String args;
     /** 方法返回值 */
+    @Column( columnDefinition = "TEXT" )
     private String response;
     /** 请求的类名+方法名 */
     private String className;
     /** 请求的方式 */
     private String requestMode;
     /** 方法执行后时间 */
-    private long endTime_ns;
+    private long endTime;
     /** 方法执行前时间 */
-    private long startTime_ns;
-    /** 方法执行时长 */
+    private long startTime;
+    /** 方法执行时长 秒*/
     private String methodRunningTime;
 
 
@@ -44,15 +45,15 @@ public class ExecutionLog implements Serializable {
     }
 
     public ExecutionLog(String ip, String url, String args, String response, String className, String requestMode,
-                        long endTime_ns, long startTime_ns, String methodRunningTime) {
+                        long endTime, long startTime, String methodRunningTime) {
         this.ip = ip;
         this.url = url;
         this.args = args;
         this.response = response;
         this.className = className;
         this.requestMode = requestMode;
-        this.endTime_ns = endTime_ns;
-        this.startTime_ns = startTime_ns;
+        this.endTime = endTime;
+        this.startTime = startTime;
         this.methodRunningTime = methodRunningTime;
     }
 
@@ -112,20 +113,20 @@ public class ExecutionLog implements Serializable {
         this.requestMode = requestMode;
     }
 
-    public long getEndTime_ns() {
-        return endTime_ns;
+    public long getEndTime() {
+        return endTime;
     }
 
-    public void setEndTime_ns(long endTime_ns) {
-        this.endTime_ns = endTime_ns;
+    public void setEndTime(long endTime) {
+        this.endTime = endTime;
     }
 
-    public long getStartTime_ns() {
-        return startTime_ns;
+    public long getStartTime() {
+        return startTime;
     }
 
-    public void setStartTime_ns(long startTime_ns) {
-        this.startTime_ns = startTime_ns;
+    public void setStartTime(long startTime) {
+        this.startTime = startTime;
     }
 
     public String getMethodRunningTime() {
@@ -146,11 +147,9 @@ public class ExecutionLog implements Serializable {
                 ", response='" + response + '\'' +
                 ", className='" + className + '\'' +
                 ", requestMode='" + requestMode + '\'' +
-                ", endTime_ns=" + endTime_ns +
-                ", startTime_ns=" + startTime_ns +
+                ", endTime=" + endTime +
+                ", startTime=" + startTime +
                 ", methodRunningTime='" + methodRunningTime + '\'' +
                 '}';
     }
-
-
 }

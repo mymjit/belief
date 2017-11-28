@@ -24,7 +24,6 @@ spring:
      poolPreparedStatements: true
      maxPoolPreparedStatementPerConnectionSize: 20
      filters: stat,wall,slf4j
-
   redis:
      host: 127.0.0.1
      port: 6379
@@ -34,6 +33,5 @@ spring:
         max-active: 8
         max-idle: 8
         min-idle: 0
-
-#指定文件上传的位置
+#文件上传的位置,避免软件部署导致删除了本地的文件
 fileUploadPath : file:D:/file/

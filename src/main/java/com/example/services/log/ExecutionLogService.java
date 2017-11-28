@@ -9,5 +9,5 @@ import com.example.domail.log.ExecutionLog;
  */
 public interface ExecutionLogService {
 
-    ExecutionLog save(ExecutionLog executionLog);
+    void save(ExecutionLog executionLog);
 }

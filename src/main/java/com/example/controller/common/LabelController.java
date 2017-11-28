@@ -1,6 +1,5 @@
 package com.example.controller.common;
 
-import com.example.domail.common.Label;
 import com.example.model.ResultModel;
 import com.example.services.common.LabelService;
 import com.example.util.ResultUtil;
@@ -11,12 +10,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.List;
-
-
 /**
- * @author : while
- * @date : 2017/11/8
+ * @author   : while
+ * @date     : 2017/11/8
  * @describe :
  */
 @RestController

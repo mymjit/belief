@@ -8,16 +8,16 @@ import java.security.SecureRandom;
 /**
  *@date     : 2017/11/6
  *@author   : whilte
- *@describe :
+ *@describe : MD5加密
  */
 @Component
 public class Md5Util {
 
-    // BCrypt parameters
+    /** BCrypt parameters  */
     private static final int GENSALT_DEFAULT_LOG2_ROUNDS = 10;
     private static final int BCRYPT_SALT_LEN = 16;
 
-    // Blowfish parameters
+    /** Blowfish parameters */
     private static final int BLOWFISH_NUM_ROUNDS = 16;
 
 
@@ -32,7 +32,7 @@ public class Md5Util {
         System.out.println(sign);
     }
 
-    // Initial contents of key schedule
+    /** Initial contents of key schedule */
     private static final int P_orig[] = {
             0x243f6a88, 0x85a308d3, 0x13198a2e, 0x03707344,
             0xa4093822, 0x299f31d0, 0x082efa98, 0xec4e6c89,
@@ -299,13 +299,13 @@ public class Md5Util {
             0xb74e6132, 0xce77e25b, 0x578fdfe3, 0x3ac372e6
     };
 
-    // bcrypt IV: "OrpheanBeholderScryDoubt"
+    /** bcrypt IV: "OrpheanBeholderScryDoubt" */
     static private final int bf_crypt_ciphertext[] = {
             0x4f727068, 0x65616e42, 0x65686f6c,
             0x64657253, 0x63727944, 0x6f756274
     };
 
-    // Table for Base64 encoding
+    /** Table for Base64 encoding */
     static private final char base64_code[] = {
             '.', '/', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J',
             'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V',
@@ -315,7 +315,7 @@ public class Md5Util {
             '6', '7', '8', '9'
     };
 
-    // Table for Base64 decoding
+    /** Table for Base64 decoding */
     static private final byte index_64[] = {
             -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
             -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
@@ -332,7 +332,7 @@ public class Md5Util {
             51, 52, 53, -1, -1, -1, -1, -1
     };
 
-    // Expanded Blowfish key
+    /** Expanded Blowfish key */
     private int P[];
     private int S[];
 

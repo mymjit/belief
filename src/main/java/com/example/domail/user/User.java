@@ -1,13 +1,7 @@
 package com.example.domail.user;
 
-import com.example.domail.blog.Article;
-import com.example.domail.file.Picture;
-import org.springframework.stereotype.Component;
-
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
 
 
 /**

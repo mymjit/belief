@@ -13,9 +13,9 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
- * @Author : whilte
- * @Date : 2017/10/16
- * @Describe :
+ *@date     : 2017/11/17
+ *@author   : whilte
+ *@describe :
  */
 @ControllerAdvice
 public class ExceptionHandle {
@@ -28,10 +28,12 @@ public class ExceptionHandle {
     @ExceptionHandler(value = Exception.class)
     @ResponseBody
     public ResultModel handle(Exception e) {
-        if (e instanceof InvalidDataAccessResourceUsageException) {   //重复插入限制唯一的字段列会抛该异常(如注册用户名重复)
+        if (e instanceof InvalidDataAccessResourceUsageException) {
+            //重复插入限制唯一的字段列会抛该异常(如注册用户名重复)
             resultEnum = ResultEnum.DATA_DUPLICATION;
             return ResultUtil.error(resultEnum,null);
-        } else if (e instanceof UserException) { //针对自己定义的异常做处理
+        } else if (e instanceof UserException) {
+            //针对自己定义的异常做处理
             UserException userException = (UserException) e;
             return ResultUtil.error(userException.getMessage(),userException.getCode(),null);
         } else {
